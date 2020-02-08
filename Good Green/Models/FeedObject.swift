@@ -11,12 +11,16 @@ import Foundation
 
 public struct FeedObject {
     
-    let id: Int
+    let id: String
     
     let user: User
     
     let challenge: Challenge
     
     let likes: [User]
+    
+    let feedType: FeedType
+    
+    let date: Date
 
 }
