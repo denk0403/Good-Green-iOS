@@ -33,6 +33,7 @@ public struct Challenge {
         self.description = description
         self.threshold = threshold
         self.challengeUsers = challengeUsers
+        self.threshold = threshold
         
     }
     

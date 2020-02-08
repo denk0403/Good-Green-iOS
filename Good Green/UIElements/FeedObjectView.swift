@@ -14,19 +14,24 @@ struct FeedObjectView: View {
     
 
     
+    @State private var isLoading = true
+    
+    var plantImg = "plant-selected"
     @State private var plantImg = "plant-selected"
+
     
     let cornerR: CGFloat = 12
     var body: some View {
-        VStack {
+        AnyView(self.isLoading ? AnyView(Text("Hello")) :
+        AnyView(VStack {
             // main body showing challenge, icon, and description
             ZStack {
-                RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                    .fill(Color(Constants.whiteSmoke))
+                RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
+                    .fill(Color(self.whiteSmoke))
                     .frame(width: 319, height: 124.34)
                     .overlay(
-                        RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                            .stroke(Color(Constants.gunmetal), lineWidth: 1))
+                        RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
+                            .stroke(Color(self.gunmetal), lineWidth: 1))
                
                 Button(action: {
                     self.visitChallengePage()
@@ -42,16 +47,21 @@ struct FeedObjectView: View {
                     .frame(width: 32, height: 32)
                 .clipShape(Circle())
                     .overlay(
-                        Circle().stroke(Color(Constants.gunmetal), lineWidth: 1))
-                    .offset(x: -230, y: -30)
-                    
-                    
-                }
+                        Circle().stroke(Color(self.gunmetal), lineWidth: 1))
+                    .offset(x: -130, y: -30)
+                
+                    // challenge name
+                Text(self.feedObject.challenge.name)
+                        .font(.custom("Helvetica Neue", size: 20))
+                    .foregroundColor(Color(self.gunmetal))
+                        .offset(x: -55, y: -6)
+                        .padding(EdgeInsets(top: 0, leading: 50, bottom: 50, trailing: 50))
+                       
                     // challenge description
-                    Text(feedObject.challenge.description)
-                            .font(.custom("Helvetica Neue", size: 9))
-                        .foregroundColor(Color(Constants.gunmetal))
-                         .padding(EdgeInsets(top:10, leading: 50, bottom: 0, trailing: 50))
+                Text(self.feedObject.challenge.description)
+                        .font(.custom("Helvetica Neue", size: 9))
+                    .foregroundColor(Color(self.gunmetal))
+                     .padding(EdgeInsets(top:10, leading: 50, bottom: 0, trailing: 50))
                         .frame(idealHeight: 80, maxHeight: 100)
                 
                 
@@ -60,7 +70,7 @@ struct FeedObjectView: View {
                     Button(action: {
                         self.plantImg = self.determineLikeSprite()
                     }) {
-                            Image(getPlantImg())
+                        Image(self.getPlantImg())
                             .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 26, height: 26)
@@ -108,7 +118,7 @@ struct FeedObjectView: View {
                             Button(action: {
                                 self.visitUserPage()
                             }) {
-                                Text(feedObject.user.name)
+                                Text(self.feedObject.user.name)
                                 .font(.custom("Helvetica Neue", size: 12))
                                     .foregroundColor(Color(Constants.whiteSmoke))
                             }
@@ -120,7 +130,10 @@ struct FeedObjectView: View {
                     }
                     
                 )
-            }
+            })).onTapGesture {
+            self.isLoading = false
+            print(self.isLoading)
+        }
     }
     
     func visitUserPage() -> Void {
@@ -166,12 +179,14 @@ struct FeedObjectView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        let user = User(userImage: Image(systemName: "house"), id: "1", name: "Levi", bio: "hello", activeChallenges: [], previousChallenges: [], followers: [], following: []);
+//        let user = User(userImage: Image(systemName: "house"), name: "Levi", bio: "hello", activeChallenges: [], previousChallenges: [], followers: [], following: []);
+//
+//        let challenge = Challenge(name: "challenge 1", iconImage:Image(systemName: "house"), vibe: Vibe.water, description: "Grab a shovel and get digging! You can find saplings at hardware stores or anywhere that sells trees. Make it a goal to plant one every month and soon you’ll have a whole grove!", challengeUsers: []);
+//
+//        let feedObject2 = FeedObject(id: 1, user: user, challenge: challenge, likes: [], feedType: FeedType.completed);
+
         
-        let challenge = Challenge(id: "2", name: "challenge 1", iconImage:Image(systemName: "house"), vibe: Vibe.water, description: "Grab a shovel and get digging! You can find saplings at hardware stores or anywhere that sells trees. Make it a goal to plant one every month and soon you’ll have a whole grove!", threshold: 1, challengeUsers: []);
-        let feedObject2 = FeedObject(id: "3", user: user, challenge: challenge, likes: [], feedType: FeedType.created, date: Date());
-        
-        return FeedObjectView(feedObject: feedObject2)
+        return FeedObjectView(feedObject: Constants.fo3)
     }
 }
 

@@ -24,9 +24,9 @@ public struct User {
     
     var previousChallenges: [Progress]
     
-    let followers: [User]
+    var followers: [User]
     
-    let following: [User]
+    var following: [User]
     
     init(userImage: Image, id: String, name: String, bio: String, activeChallenges: [Progress] = [], previousChallenges: [Progress] = [], followers: [User] = [], following: [User] = []) {
         self.userImage = userImage
@@ -41,7 +41,40 @@ public struct User {
     
     mutating func subscribeTo(challenge: Challenge) {
         let newProgress = Progress(value: 0, challenge: challenge);
-        activeChallenges.append(newProgress);
+        activeChallenges.append(newProgress)
+    }
+    
+    mutating func unsubscribeFrom(challenge: Challenge) {
+        let maybeChallenge = activeChallenges.first {
+            $0.challenge.id == challenge.id
+        }
+        
+        if let removeChallenge = maybeChallenge {
+            previousChallenges.append(removeChallenge)
+            activeChallenges = activeChallenges.filter {
+                $0.challenge.id != removeChallenge.challenge.id
+            }
+        }
+    }
+    
+    mutating func addFollowing(user: User) {
+        following.append(user)
+    }
+    
+    mutating func addFollower(user: User) {
+        followers.append(user)
+    }
+    
+    mutating func removeFollowing(user: User) {
+        following = following.filter {
+            $0.id != user.id
+        }
+    }
+    
+    mutating func removeFollower(user: User) {
+        followers = followers.filter {
+            $0.id != user.id
+        }
     }
     
 }
