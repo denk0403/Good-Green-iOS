@@ -11,7 +11,7 @@ import Foundation
 
 public struct FeedObject {
     
-    let id: Int
+    let id: String
     
     let user: User
     
@@ -20,5 +20,7 @@ public struct FeedObject {
     let likes: [User]
     
     let feedType: FeedType
+    
+    let date: Date
 
 }

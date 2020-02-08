@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum Vibe {
-    case water, trash, trees, animals, transportation
+enum Vibe: String {
+    case water = "Water", trash = "Trash", trees = "Trees", animals = "Animals", transportation = "Transportation"
 }

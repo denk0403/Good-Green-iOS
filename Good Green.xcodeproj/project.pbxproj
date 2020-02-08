@@ -15,6 +15,14 @@
 		46E2976023EE51E8006849C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46E2975E23EE51E8006849C8 /* LaunchScreen.storyboard */; };
 		46E2976B23EE51E8006849C8 /* Good_GreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2976A23EE51E8006849C8 /* Good_GreenTests.swift */; };
 		46E2977623EE51E8006849C8 /* Good_GreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2977523EE51E8006849C8 /* Good_GreenUITests.swift */; };
+		46E2978823EE9263006849C8 /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2978723EE9263006849C8 /* AppService.swift */; };
+		46E2978A23EE952C006849C8 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2978923EE952C006849C8 /* Progress.swift */; };
+		46E2978C23EF2336006849C8 /* AppServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2978B23EF2336006849C8 /* AppServiceImpl.swift */; };
+		46E2978F23EF255F006849C8 /* UserMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2978E23EF255F006849C8 /* UserMocks.swift */; };
+		46E2979123EF25E7006849C8 /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2979023EF25E7006849C8 /* FeedType.swift */; };
+		46E2979323EF29DE006849C8 /* ChallengeMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2979223EF29DE006849C8 /* ChallengeMocks.swift */; };
+		46E2979623EF378C006849C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2979523EF378C006849C8 /* Constants.swift */; };
+		46E2979823EF3923006849C8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E2979723EF3923006849C8 /* Utils.swift */; };
 		D3FD7D1523EE7BBA0073D515 /* FeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D1423EE7BBA0073D515 /* FeedObject.swift */; };
 		D3FD7D1723EE7C870073D515 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D1623EE7C870073D515 /* Challenge.swift */; };
 		D3FD7D1923EE7D2A0073D515 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D1823EE7D2A0073D515 /* User.swift */; };
@@ -55,6 +63,14 @@
 		46E2977123EE51E8006849C8 /* Good GreenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Good GreenUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E2977523EE51E8006849C8 /* Good_GreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good_GreenUITests.swift; sourceTree = "<group>"; };
 		46E2977723EE51E8006849C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46E2978723EE9263006849C8 /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
+		46E2978923EE952C006849C8 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
+		46E2978B23EF2336006849C8 /* AppServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceImpl.swift; sourceTree = "<group>"; };
+		46E2978E23EF255F006849C8 /* UserMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMocks.swift; sourceTree = "<group>"; };
+		46E2979023EF25E7006849C8 /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
+		46E2979223EF29DE006849C8 /* ChallengeMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeMocks.swift; sourceTree = "<group>"; };
+		46E2979523EF378C006849C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		46E2979723EF3923006849C8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D3FD7D1423EE7BBA0073D515 /* FeedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedObject.swift; sourceTree = "<group>"; };
 		D3FD7D1623EE7C870073D515 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		D3FD7D1823EE7D2A0073D515 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -111,6 +127,8 @@
 		46E2975223EE51E6006849C8 /* Good Green */ = {
 			isa = PBXGroup;
 			children = (
+				46E2978D23EF2529006849C8 /* Mocks */,
+				46E2978623EE9250006849C8 /* Services */,
 				D3FD7D1D23EE81350073D515 /* UIElements */,
 				D3FD7D1323EE7B920073D515 /* Models */,
 				46E2975323EE51E6006849C8 /* AppDelegate.swift */,
@@ -150,6 +168,26 @@
 			path = "Good GreenUITests";
 			sourceTree = "<group>";
 		};
+		46E2978623EE9250006849C8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				46E2978723EE9263006849C8 /* AppService.swift */,
+				46E2978B23EF2336006849C8 /* AppServiceImpl.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		46E2978D23EF2529006849C8 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				46E2978E23EF255F006849C8 /* UserMocks.swift */,
+				46E2979223EF29DE006849C8 /* ChallengeMocks.swift */,
+				46E2979523EF378C006849C8 /* Constants.swift */,
+				46E2979723EF3923006849C8 /* Utils.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		D3FD7D1323EE7B920073D515 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,7 +195,8 @@
 				D3FD7D1623EE7C870073D515 /* Challenge.swift */,
 				D3FD7D1823EE7D2A0073D515 /* User.swift */,
 				D3FD7D1A23EE7E2F0073D515 /* Vibe.swift */,
-				D3FD7D2223EF25D70073D515 /* FeedType.swift */,
+				46E2978923EE952C006849C8 /* Progress.swift */,
+				46E2979023EF25E7006849C8 /* FeedType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -302,11 +341,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				46E2975423EE51E6006849C8 /* AppDelegate.swift in Sources */,
+				46E2978823EE9263006849C8 /* AppService.swift in Sources */,
+				46E2979123EF25E7006849C8 /* FeedType.swift in Sources */,
+				46E2978F23EF255F006849C8 /* UserMocks.swift in Sources */,
+				46E2978C23EF2336006849C8 /* AppServiceImpl.swift in Sources */,
+				46E2979623EF378C006849C8 /* Constants.swift in Sources */,
 				46E2975623EE51E6006849C8 /* SceneDelegate.swift in Sources */,
+				46E2979823EF3923006849C8 /* Utils.swift in Sources */,
 				D3FD7D1923EE7D2A0073D515 /* User.swift in Sources */,
 				D3FD7D1523EE7BBA0073D515 /* FeedObject.swift in Sources */,
 				46E2975823EE51E6006849C8 /* ContentView.swift in Sources */,
+				46E2978A23EE952C006849C8 /* Progress.swift in Sources */,
 				D3FD7D2123EE817E0073D515 /* FeedObjectView.swift in Sources */,
+				46E2979323EF29DE006849C8 /* ChallengeMocks.swift in Sources */,
 				D3FD7D1723EE7C870073D515 /* Challenge.swift in Sources */,
 				D3FD7D1B23EE7E2F0073D515 /* Vibe.swift in Sources */,
 				D3FD7D2323EF25D70073D515 /* FeedType.swift in Sources */,
