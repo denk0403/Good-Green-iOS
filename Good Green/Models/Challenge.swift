@@ -25,13 +25,14 @@ public struct Challenge {
     
     var challengeUsers: [User]
     
-    init(id: String, name: String, iconImage: Image, vibe: Vibe, description: String, challengeUsers: [User] = []) {
+    init(id: String, name: String, iconImage: Image, vibe: Vibe, description: String, challengeUsers: [User] = [], threshold: Int) {
         self.id = id
         self.name = name
         self.iconImage = iconImage
         self.vibe = vibe
         self.description = description
         self.challengeUsers = challengeUsers
+        self.threshold = threshold
         
     }
     

@@ -20,39 +20,42 @@ struct FeedObjectView: View {
     let gunmetal = UIColor(hex: "#2d334fff")!
     let coral = UIColor(hex: "#ff7f61ff")!
     
+    @State private var isLoading = true
+    
     var plantImg = "plant-selected"
     
     let cornerR: CGFloat = 12
     var body: some View {
-        VStack {
+        AnyView(self.isLoading ? AnyView(Text("Hello")) :
+        AnyView(VStack {
             // main body showing challenge, icon, and description
             ZStack {
-                RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                .fill(Color(whiteSmoke))
+                RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
+                    .fill(Color(self.whiteSmoke))
                     .frame(width: 319, height: 124.34)
                     .overlay(
-                        RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                            .stroke(Color(gunmetal), lineWidth: 1))
+                        RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
+                            .stroke(Color(self.gunmetal), lineWidth: 1))
                 
                 Image(systemName: "house.fill")
                 .resizable()
                     .frame(width: 32, height: 32)
                 .clipShape(Circle())
                     .overlay(
-                        Circle().stroke(Color(gunmetal), lineWidth: 1))
+                        Circle().stroke(Color(self.gunmetal), lineWidth: 1))
                     .offset(x: -130, y: -30)
                 
                     // challenge name
-                    Text(feedObject.challenge.name)
+                Text(self.feedObject.challenge.name)
                         .font(.custom("Helvetica Neue", size: 20))
-                .foregroundColor(Color(gunmetal))
+                    .foregroundColor(Color(self.gunmetal))
                         .offset(x: -55, y: -6)
                         .padding(EdgeInsets(top: 0, leading: 50, bottom: 50, trailing: 50))
                        
                     // challenge description
-                    Text(feedObject.challenge.description)
+                Text(self.feedObject.challenge.description)
                         .font(.custom("Helvetica Neue", size: 9))
-                        .foregroundColor(Color(gunmetal))
+                    .foregroundColor(Color(self.gunmetal))
                      .padding(EdgeInsets(top:10, leading: 50, bottom: 0, trailing: 50))
                         .frame(idealHeight: 80, maxHeight: 100)
                 
@@ -63,7 +66,7 @@ struct FeedObjectView: View {
                         fov.determineLikeSprite()
                         //self.determineLikeSprite()
                     }) {
-                            Image(getPlantImg())
+                        Image(self.getPlantImg())
                             .resizable()
                                 .frame(width: 29, height: 29)
                         }
@@ -71,7 +74,7 @@ struct FeedObjectView: View {
                         .offset(x: -130, y: 41)
                     Text("\(self.getNumerOfLikes()) likes")
                         .font(.custom("Helvetica Neue", size: 6))
-                        .foregroundColor(Color(gunmetal))
+                        .foregroundColor(Color(self.gunmetal))
                         .offset(x: -130, y: 35)
                         .frame(width: 25)
                 }
@@ -94,34 +97,37 @@ struct FeedObjectView: View {
                 }
             
                 // who did it and what they did bubble at top
-                RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                               .fill(Color(ufoGreen))
+            RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
+                .fill(Color(self.ufoGreen))
                                .frame(width: 201, height: 17)
                     .offset(y: -140)
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 100))
                 .overlay(
                     ZStack {
-                            RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                            .stroke(Color(gunmetal), lineWidth: 1)
+                        RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
+                            .stroke(Color(self.gunmetal), lineWidth: 1)
                             .offset(x: -45, y: -140)
                             .frame(width: 201, height: 17)
                         HStack {
                             Button(action: {
                                 self.visitUserPage()
                             }) {
-                                Text(feedObject.user.name)
+                                Text(self.feedObject.user.name)
                                 .font(.custom("Helvetica Neue", size: 12))
-                                .foregroundColor(Color(whiteSmoke))
+                                    .foregroundColor(Color(self.whiteSmoke))
                             }
                             Text("completed a challenge")
                             .font(.custom("Helvetica Neue", size: 12))
-                            .foregroundColor(Color(gunmetal))
+                                .foregroundColor(Color(self.gunmetal))
                         }.offset(x: -60, y: -140)
                             .frame(alignment: .leading)
                     }
                     
                 )
-            }
+            })).onTapGesture {
+            self.isLoading = false
+            print(self.isLoading)
+        }
     }
     
     func visitUserPage() -> Void {
@@ -163,13 +169,13 @@ struct FeedObjectView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        let user = User(userImage: Image(systemName: "house"), name: "Levi", bio: "hello", activeChallenges: [], previousChallenges: [], followers: [], following: []);
+//        let user = User(userImage: Image(systemName: "house"), name: "Levi", bio: "hello", activeChallenges: [], previousChallenges: [], followers: [], following: []);
+//
+//        let challenge = Challenge(name: "challenge 1", iconImage:Image(systemName: "house"), vibe: Vibe.water, description: "Grab a shovel and get digging! You can find saplings at hardware stores or anywhere that sells trees. Make it a goal to plant one every month and soon you’ll have a whole grove!", challengeUsers: []);
+//
+//        let feedObject2 = FeedObject(id: 1, user: user, challenge: challenge, likes: [], feedType: FeedType.completed);
         
-        let challenge = Challenge(name: "challenge 1", iconImage:Image(systemName: "house"), vibe: Vibe.water, description: "Grab a shovel and get digging! You can find saplings at hardware stores or anywhere that sells trees. Make it a goal to plant one every month and soon you’ll have a whole grove!", challengeUsers: []);
-        
-        let feedObject2 = FeedObject(id: 1, user: user, challenge: challenge, likes: [], feedType: FeedType.completed);
-        
-        return FeedObjectView(feedObject: feedObject2)
+        return FeedObjectView(feedObject: Constants.fo3)
     }
 }
 
