@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-class AppServiceImpl: AppService {
+class AppServiceImpl {
     
     var userID: String?;
     

@@ -10,19 +10,15 @@ import SwiftUI
 
 struct FeedObjectView: View {
     
-
-    
     let feedObject: FeedObject
     
-    let whiteSmoke = UIColor(hex: "#f5f5eeff")!
-    let ufoGreen = UIColor(hex: "#1ed884ff")!
-    let mint = UIColor(hex: "#4eb285ff")!
-    let gunmetal = UIColor(hex: "#2d334fff")!
-    let coral = UIColor(hex: "#ff7f61ff")!
+
     
     @State private var isLoading = true
     
     var plantImg = "plant-selected"
+    @State private var plantImg = "plant-selected"
+
     
     let cornerR: CGFloat = 12
     var body: some View {
@@ -36,7 +32,16 @@ struct FeedObjectView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
                             .stroke(Color(self.gunmetal), lineWidth: 1))
-                
+               
+                Button(action: {
+                    self.visitChallengePage()
+                }) {
+                // challenge name
+                    Text(feedObject.challenge.name)
+                        .font(.custom("Helvetica Neue", size: 20))
+                        .foregroundColor(Color(Constants.gunmetal))
+                        .offset(x: -25, y: -6)
+                        .padding(EdgeInsets(top: 0, leading: 50, bottom: 50, trailing: 50))
                 Image(systemName: "house.fill")
                 .resizable()
                     .frame(width: 32, height: 32)
@@ -59,22 +64,23 @@ struct FeedObjectView: View {
                      .padding(EdgeInsets(top:10, leading: 50, bottom: 0, trailing: 50))
                         .frame(idealHeight: 80, maxHeight: 100)
                 
+                
                 // like button
                 VStack {
                     Button(action: {
-                        var fov = FeedObjectView(feedObject: self.feedObject)
-                        fov.determineLikeSprite()
-                        //self.determineLikeSprite()
+                        self.plantImg = self.determineLikeSprite()
                     }) {
                         Image(self.getPlantImg())
                             .resizable()
-                                .frame(width: 29, height: 29)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 26, height: 26)
+                        
                         }
                         .buttonStyle(PlainButtonStyle())
                         .offset(x: -130, y: 41)
                     Text("\(self.getNumerOfLikes()) likes")
                         .font(.custom("Helvetica Neue", size: 6))
-                        .foregroundColor(Color(self.gunmetal))
+                        .foregroundColor(Color(Constants.gunmetal))
                         .offset(x: -130, y: 35)
                         .frame(width: 25)
                 }
@@ -97,15 +103,15 @@ struct FeedObjectView: View {
                 }
             
                 // who did it and what they did bubble at top
-            RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
-                .fill(Color(self.ufoGreen))
+                RoundedRectangle(cornerRadius: cornerR, style: .continuous)
+                    .fill(Color(Constants.ufoGreen))
                                .frame(width: 201, height: 17)
                     .offset(y: -140)
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 100))
                 .overlay(
                     ZStack {
-                        RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
-                            .stroke(Color(self.gunmetal), lineWidth: 1)
+                            RoundedRectangle(cornerRadius: cornerR, style: .continuous)
+                                .stroke(Color(Constants.gunmetal), lineWidth: 1)
                             .offset(x: -45, y: -140)
                             .frame(width: 201, height: 17)
                         HStack {
@@ -114,11 +120,11 @@ struct FeedObjectView: View {
                             }) {
                                 Text(self.feedObject.user.name)
                                 .font(.custom("Helvetica Neue", size: 12))
-                                    .foregroundColor(Color(self.whiteSmoke))
+                                    .foregroundColor(Color(Constants.whiteSmoke))
                             }
                             Text("completed a challenge")
                             .font(.custom("Helvetica Neue", size: 12))
-                                .foregroundColor(Color(self.gunmetal))
+                                .foregroundColor(Color(Constants.gunmetal))
                         }.offset(x: -60, y: -140)
                             .frame(alignment: .leading)
                     }
@@ -138,16 +144,16 @@ struct FeedObjectView: View {
         return "completed a challenge"
     }
     
-     mutating func determineLikeSprite() -> Void {
+     func determineLikeSprite() -> String {
         if(plantImg == "plant-unselected") {
             print("selected")
-            plantImg = "plant-selected"
+            return "plant-selected"
         } else if (plantImg == "plant-selected") {
             print("deselected")
-            plantImg = "plant-unselected"
+            return "plant-unselected"
         } else {
             print("selected")
-            plantImg = "plant-unselected"
+            return "plant-unselected"
         }
     }
     
@@ -163,6 +169,10 @@ struct FeedObjectView: View {
     func getPlantImg() -> String {
         return plantImg
     }
+    
+    func visitChallengePage() -> Void {
+        print ("Visiting challenge page")
+    }
 }
 
 struct FeedObjectView_Previews: PreviewProvider {
@@ -174,6 +184,7 @@ struct FeedObjectView_Previews: PreviewProvider {
 //        let challenge = Challenge(name: "challenge 1", iconImage:Image(systemName: "house"), vibe: Vibe.water, description: "Grab a shovel and get digging! You can find saplings at hardware stores or anywhere that sells trees. Make it a goal to plant one every month and soon you’ll have a whole grove!", challengeUsers: []);
 //
 //        let feedObject2 = FeedObject(id: 1, user: user, challenge: challenge, likes: [], feedType: FeedType.completed);
+
         
         return FeedObjectView(feedObject: Constants.fo3)
     }
