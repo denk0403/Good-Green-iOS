@@ -20,8 +20,7 @@ struct FeedObjectView: View {
     
     let cornerR: CGFloat = 12
     var body: some View {
-        AnyView(self.isLoading ? AnyView(Text("Hello")) :
-        AnyView(VStack {
+        VStack {
             // main body showing challenge, icon, and description
             ZStack {
                 RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
@@ -128,11 +127,9 @@ struct FeedObjectView: View {
                     }
                     
                 )
-            }})).onTapGesture {
-            self.isLoading = false
-            print(self.isLoading)
+            }
         }
-        }
+    }
     
     func visitUserPage() -> Void {
         print("Username Tapped!")
