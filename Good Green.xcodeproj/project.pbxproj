@@ -20,6 +20,7 @@
 		D3FD7D1923EE7D2A0073D515 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D1823EE7D2A0073D515 /* User.swift */; };
 		D3FD7D1B23EE7E2F0073D515 /* Vibe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D1A23EE7E2F0073D515 /* Vibe.swift */; };
 		D3FD7D2123EE817E0073D515 /* FeedObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D2023EE817D0073D515 /* FeedObjectView.swift */; };
+		D3FD7D2323EF25D70073D515 /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D2223EF25D70073D515 /* FeedType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		D3FD7D1823EE7D2A0073D515 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3FD7D1A23EE7E2F0073D515 /* Vibe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibe.swift; sourceTree = "<group>"; };
 		D3FD7D2023EE817D0073D515 /* FeedObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedObjectView.swift; sourceTree = "<group>"; };
+		D3FD7D2223EF25D70073D515 /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				D3FD7D1623EE7C870073D515 /* Challenge.swift */,
 				D3FD7D1823EE7D2A0073D515 /* User.swift */,
 				D3FD7D1A23EE7E2F0073D515 /* Vibe.swift */,
+				D3FD7D2223EF25D70073D515 /* FeedType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				D3FD7D2123EE817E0073D515 /* FeedObjectView.swift in Sources */,
 				D3FD7D1723EE7C870073D515 /* Challenge.swift in Sources */,
 				D3FD7D1B23EE7E2F0073D515 /* Vibe.swift in Sources */,
+				D3FD7D2323EF25D70073D515 /* FeedType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

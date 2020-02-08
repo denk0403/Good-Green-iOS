@@ -15,7 +15,7 @@ public struct Challenge {
     
     let iconImage: Image
     
-    let vibe: String
+    let vibe: Vibe
     
     let description: String
     

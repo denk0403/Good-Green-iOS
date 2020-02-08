@@ -18,5 +18,7 @@ public struct FeedObject {
     let challenge: Challenge
     
     let likes: [User]
+    
+    let feedType: FeedType
 
 }
