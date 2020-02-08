@@ -15,8 +15,6 @@ struct FeedObjectView: View {
 
     
     @State private var isLoading = true
-    
-    var plantImg = "plant-selected"
     @State private var plantImg = "plant-selected"
 
     
@@ -27,11 +25,11 @@ struct FeedObjectView: View {
             // main body showing challenge, icon, and description
             ZStack {
                 RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
-                    .fill(Color(self.whiteSmoke))
+                    .fill(Color(Constants.gunmetal))
                     .frame(width: 319, height: 124.34)
                     .overlay(
                         RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
-                            .stroke(Color(self.gunmetal), lineWidth: 1))
+                            .stroke(Color(Constants.gunmetal), lineWidth: 1))
                
                 Button(action: {
                     self.visitChallengePage()
@@ -47,20 +45,20 @@ struct FeedObjectView: View {
                     .frame(width: 32, height: 32)
                 .clipShape(Circle())
                     .overlay(
-                        Circle().stroke(Color(self.gunmetal), lineWidth: 1))
+                        Circle().stroke(Color(Constants.gunmetal), lineWidth: 1))
                     .offset(x: -130, y: -30)
                 
                     // challenge name
                 Text(self.feedObject.challenge.name)
                         .font(.custom("Helvetica Neue", size: 20))
-                    .foregroundColor(Color(self.gunmetal))
+                    .foregroundColor(Color(Constants.gunmetal))
                         .offset(x: -55, y: -6)
                         .padding(EdgeInsets(top: 0, leading: 50, bottom: 50, trailing: 50))
                        
                     // challenge description
                 Text(self.feedObject.challenge.description)
                         .font(.custom("Helvetica Neue", size: 9))
-                    .foregroundColor(Color(self.gunmetal))
+                    .foregroundColor(Color(Constants.gunmetal))
                      .padding(EdgeInsets(top:10, leading: 50, bottom: 0, trailing: 50))
                         .frame(idealHeight: 80, maxHeight: 100)
                 
@@ -130,11 +128,11 @@ struct FeedObjectView: View {
                     }
                     
                 )
-            })).onTapGesture {
+            }})).onTapGesture {
             self.isLoading = false
             print(self.isLoading)
         }
-    }
+        }
     
     func visitUserPage() -> Void {
         print("Username Tapped!")
