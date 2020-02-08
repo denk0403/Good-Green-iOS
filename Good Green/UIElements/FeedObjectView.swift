@@ -21,114 +21,108 @@ struct FeedObjectView: View {
     let cornerR: CGFloat = 12
     var body: some View {
         VStack {
-            // main body showing challenge, icon, and description
-            ZStack {
-                RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
-                    .fill(Color(Constants.gunmetal))
-                    .frame(width: 319, height: 124.34)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: self.cornerR, style: .continuous)
-                            .stroke(Color(Constants.gunmetal), lineWidth: 1))
-               
-                Button(action: {
-                    self.visitChallengePage()
-                }) {
-                // challenge name
-                    Text(feedObject.challenge.name)
-                        .font(.custom("Helvetica Neue", size: 20))
-                        .foregroundColor(Color(Constants.gunmetal))
-                        .offset(x: -25, y: -6)
-                        .padding(EdgeInsets(top: 0, leading: 50, bottom: 50, trailing: 50))
-                Image(systemName: "house.fill")
-                .resizable()
-                    .frame(width: 32, height: 32)
-                .clipShape(Circle())
-                    .overlay(
-                        Circle().stroke(Color(Constants.gunmetal), lineWidth: 1))
-                    .offset(x: -130, y: -30)
-                
-                    // challenge name
-                Text(self.feedObject.challenge.name)
-                        .font(.custom("Helvetica Neue", size: 20))
-                    .foregroundColor(Color(Constants.gunmetal))
-                        .offset(x: -55, y: -6)
-                        .padding(EdgeInsets(top: 0, leading: 50, bottom: 50, trailing: 50))
-                       
-                    // challenge description
-                Text(self.feedObject.challenge.description)
-                        .font(.custom("Helvetica Neue", size: 9))
-                    .foregroundColor(Color(Constants.gunmetal))
-                     .padding(EdgeInsets(top:10, leading: 50, bottom: 0, trailing: 50))
-                        .frame(idealHeight: 80, maxHeight: 100)
-                
-                
-                // like button
-                VStack {
-                    Button(action: {
-                        self.plantImg = self.determineLikeSprite()
-                    }) {
-                        Image(self.getPlantImg())
-                            .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 26, height: 26)
-                        
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        .offset(x: -130, y: 41)
-                    Text("\(self.getNumerOfLikes()) likes")
-                        .font(.custom("Helvetica Neue", size: 6))
-                        .foregroundColor(Color(Constants.gunmetal))
-                        .offset(x: -130, y: 35)
-                        .frame(width: 25)
-                }
-                
-                // comment button
-//                VStack {
-//                Button(action: {
-//                   // self.likeChallenge()
-//                }) {
-//                Image(determineLikeSprite())
-//                .resizable()
-//                    .frame(width: 29, height: 29)
-//                    .offset(x: 130, y: 43)
-//                }
-//                Text("\(self.getNumerOfLikes()) likes")
-//                    .font(.custom("Helvetica Neue", size: 6))
-//                    .foregroundColor(Color(gunmetal))
-//                    .offset(x: 130, y: 35)
-//                }
-                }
-            
-                // who did it and what they did bubble at top
-                RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                    .fill(Color(Constants.ufoGreen))
-                               .frame(width: 201, height: 17)
-                    .offset(y: -140)
-                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 100))
-                .overlay(
+                    // main body showing challenge, icon, and description
                     ZStack {
-                            RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                                .stroke(Color(Constants.gunmetal), lineWidth: 1)
-                            .offset(x: -45, y: -140)
-                            .frame(width: 201, height: 17)
-                        HStack {
-                            Button(action: {
-                                self.visitUserPage()
-                            }) {
-                                Text(self.feedObject.user.name)
-                                .font(.custom("Helvetica Neue", size: 12))
-                                    .foregroundColor(Color(Constants.whiteSmoke))
-                            }
-                            Text("completed a challenge")
-                            .font(.custom("Helvetica Neue", size: 12))
+                        RoundedRectangle(cornerRadius: cornerR, style: .continuous)
+                            .fill(Color(Constants.whiteSmoke))
+                            .frame(width: 319, height: 124.34)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: cornerR, style: .continuous)
+                                    .stroke(Color(Constants.gunmetal), lineWidth: 1))
+                       
+                        Button(action: {
+                            self.visitChallengePage()
+                        }) {
+                        // challenge name
+                            Text(feedObject.challenge.name)
+                                .font(.custom("Helvetica Neue", size: 20))
                                 .foregroundColor(Color(Constants.gunmetal))
-                        }.offset(x: -60, y: -140)
-                            .frame(alignment: .leading)
-                    }
+                                .offset(x: -25, y: -6)
+                                .padding(EdgeInsets(top: 0, leading: 50, bottom: 50, trailing: 50))
+                        Image(systemName: "house.fill")
+                        .resizable()
+                            .frame(width: 32, height: 32)
+                        .clipShape(Circle())
+                            .overlay(
+                                Circle().stroke(Color(Constants.gunmetal), lineWidth: 1))
+                            .offset(x: -230, y: -30)
+                            
+                            
+                        }
+                            // challenge description
+                            Text(feedObject.challenge.description)
+                                    .font(.custom("Helvetica Neue", size: 9))
+                                .foregroundColor(Color(Constants.gunmetal))
+                                 .padding(EdgeInsets(top:10, leading: 50, bottom: 0, trailing: 50))
+                                .frame(idealHeight: 80, maxHeight: 100)
+                        
+                        
+                        // like button
+                        VStack {
+                            Button(action: {
+                                self.plantImg = self.determineLikeSprite()
+                            }) {
+                                    Image(getPlantImg())
+                                    .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 26, height: 26)
+                                
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .offset(x: -130, y: 41)
+                            Text("\(self.getNumerOfLikes()) likes")
+                                .font(.custom("Helvetica Neue", size: 6))
+                                .foregroundColor(Color(Constants.gunmetal))
+                                .offset(x: -130, y: 35)
+                                .frame(width: 25)
+                        }
+                        
+                        // comment button
+        //                VStack {
+        //                Button(action: {
+        //                   // self.likeChallenge()
+        //                }) {
+        //                Image(determineLikeSprite())
+        //                .resizable()
+        //                    .frame(width: 29, height: 29)
+        //                    .offset(x: 130, y: 43)
+        //                }
+        //                Text("\(self.getNumerOfLikes()) likes")
+        //                    .font(.custom("Helvetica Neue", size: 6))
+        //                    .foregroundColor(Color(gunmetal))
+        //                    .offset(x: 130, y: 35)
+        //                }
+                        }
                     
-                )
-            }
-        }
+                        // who did it and what they did bubble at top
+                        RoundedRectangle(cornerRadius: cornerR, style: .continuous)
+                            .fill(Color(Constants.ufoGreen))
+                                       .frame(width: 201, height: 17)
+                            .offset(y: -140)
+                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 100))
+                        .overlay(
+                            ZStack {
+                                    RoundedRectangle(cornerRadius: cornerR, style: .continuous)
+                                        .stroke(Color(Constants.gunmetal), lineWidth: 1)
+                                    .offset(x: -45, y: -140)
+                                    .frame(width: 201, height: 17)
+                                HStack {
+                                    Button(action: {
+                                        self.visitUserPage()
+                                    }) {
+                                        Text(feedObject.user.name)
+                                        .font(.custom("Helvetica Neue", size: 12))
+                                            .foregroundColor(Color(Constants.whiteSmoke))
+                                    }
+                                    Text("completed a challenge")
+                                    .font(.custom("Helvetica Neue", size: 12))
+                                        .foregroundColor(Color(Constants.gunmetal))
+                                }.offset(x: -60, y: -140)
+                                    .frame(alignment: .leading)
+                            }
+                            
+                        )
+                    }
     }
     
     func visitUserPage() -> Void {
