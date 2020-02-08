@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Good_Green
+//@testable import Good_Green
 
 class Good_GreenTests: XCTestCase {
 
