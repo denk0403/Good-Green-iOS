@@ -11,17 +11,18 @@ import SwiftUI
 struct ContentView: View {
     @State private var selection = 0
     init() {
-        UITabBar.appearance().backgroundColor = UIColor.blue
+        UITabBar.appearance().backgroundColor = Constants.whiteSmoke
+        
     }
  
     var body: some View {
-        TabView(selection: $selection){
+        TabView(selection: $selection) {
             Text("Feed")
                 .font(.title)
                 .tabItem {
                     VStack {
                         Image(systemName: "line.horizontal.3")
-                        Text("First")
+                        Text("Feed")
                     }
                 }
                 .tag(0)

@@ -17,9 +17,7 @@ struct UserCardView: View {
     
     var body: some View {
         ZStack {
-//             Button(action: {
-//
-//             }) {
+
                 
             RoundedRectangle(cornerRadius: cornerR, style: .continuous)
                 .fill(Color(Constants.mint))
@@ -27,22 +25,24 @@ struct UserCardView: View {
                .overlay(
                    RoundedRectangle(cornerRadius: cornerR, style: .continuous)
                     .stroke(Color(Constants.gunmetal), lineWidth: 1))
-            Image(systemName: "person.fill")
-            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
-                .offset(x: -140)
-            .overlay(
-                Circle().stroke(Color(Constants.gunmetal), lineWidth: 1)
-                    .frame(width: 20, height: 20)
-                .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
-                    .offset(x: -140)
-            )
-            Text(feedObject.user.name)
-                .font(.custom("Helvetica Neue", size: 20))
-                .foregroundColor(Color(Constants.gunmetal))
-                .padding(EdgeInsets(top: 0, leading: 90, bottom: 0, trailing: 0))
-                .offset(x: -140)
+            Button(action: {
+                
+            }) {
+                HStack {
+                    Image(systemName: "person.fill")
+                    .overlay(
+                        Circle().stroke(Color(Constants.gunmetal), lineWidth: 1)
+                            .frame(width: 20, height: 20)
+                    )
+                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
+                    Text(feedObject.user.name)
+                        .font(.custom("Helvetica Neue", size: 20))
+                        .foregroundColor(Color(Constants.gunmetal))
+                    Spacer()
+                }
             }
-        //  }
+            .frame(width: 319, height: 32.34)
+        }
     }
 }
 
