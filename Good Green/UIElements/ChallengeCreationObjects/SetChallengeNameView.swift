@@ -14,7 +14,7 @@ struct SetChallengeNameView: View {
         VStack {
             TextField("Enter Challenge Name...", text: $challengeName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 250)
+                .frame(width: 260)
                 .foregroundColor(Color(Constants.gunmetal))
                 .font(.custom("Helvetica Neue", size: 18))
         }

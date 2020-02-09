@@ -13,15 +13,6 @@ struct SetChallengeDescrView: View {
      let iconSize: CGFloat = 100
     var body: some View {
         HStack {
-                Circle()
-                    .fill(Color(Constants.ufoGreen))
-                    .frame(width: iconSize*10/9 + 1, height: iconSize*10/9 + 1)
-                    .offset(x: -6, y: 0)
-                    .overlay(
-                Circle()
-                    .stroke(Color(Constants.gunmetal), lineWidth: 2)
-                    .frame(width: iconSize*10/9 + 1, height: iconSize*10/9 + 1)
-                    .offset(x: -6, y: 0))
                 VStack {
                         TextField("Enter Challenge Descripion...", text: $challengeDesc)
                     .textFieldStyle(RoundedBorderTextFieldStyle())

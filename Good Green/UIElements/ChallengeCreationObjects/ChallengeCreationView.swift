@@ -14,9 +14,17 @@ struct ChallengeCreationView: View {
         ZStack {
             Color(Constants.whiteSmoke)
         VStack {
-            SetChallengeDescrView()
+            HStack {
+                ChallengeImageView()
+                VStack {
+                    SetChallengeNameView()
+                    SetChallengeDescrView()
+                }
+                
+            }
+           
             ChallengeCreationHeaderView()
-        }
+        }.padding(.bottom, 200)
         }
     }
 }

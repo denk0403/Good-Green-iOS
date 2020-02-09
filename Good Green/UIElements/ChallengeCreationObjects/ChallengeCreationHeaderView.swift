@@ -13,7 +13,6 @@ struct ChallengeCreationHeaderView: View {
     var body: some View {
         HStack {
             VStack {
-                SetChallengeNameView()
                 SelectVibeButton()
             }
         }
