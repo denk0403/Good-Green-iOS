@@ -8,11 +8,16 @@
 
 import SwiftUI
 
+enum ChallengeSubscription {
+    case waiting, active, inactive
+}
+
 struct LoadChallengePageView: View {
     
     @Environment(\.appService) var appService: AppService
     @State private var isError: Bool = false
     @State private var challenge: Challenge = Challenge(id: "-1", name: "", iconImage: Image(""), vibe: .animals, description: "", threshold: 0, creator: Constants.user1)
+    @State private var subscription: ChallengeSubscription = .waiting
     
     let challengeId: String;
     
@@ -24,14 +29,25 @@ struct LoadChallengePageView: View {
                 Text("Click here to retry")
             })
         } else {
-            return AnyView(LoadingView(isLoading: self.challenge.id == "-1") {
-                ChallengePageView(challenge: self.challenge)
+            return AnyView(LoadingView(isLoading: self.challenge.id == "-1" || self.subscription == .waiting) {
+                ChallengePageView(challenge: self.challenge, subscription: self.$subscription)
             }.onAppear {
                 self.appService.getChallenge(challengeID: self.challenge.id, callback: {
                     if let challenge = $0 {
                         self.challenge = challenge
                     } else {
                         self.isError = true;
+                    }
+                })
+                
+                self.appService.getUserActiveChallenges(callback: {
+                    if let progresses = $0 {
+                        self.subscription = progresses.contains(where: {
+                            $0.id == self.challenge.id
+                            }) ? .active : .inactive
+                    } else {
+                        self.isError = true;
+                        self.subscription = .waiting
                     }
                 })
             }
