@@ -11,7 +11,7 @@ import SwiftUI
 
 public struct User {
     // the image the user chooses to represent them
-    let userImage: Image
+    let userImage: String
     // the user's name
     
     let id: String
@@ -28,7 +28,7 @@ public struct User {
     
     var following: [User]
     
-    init(userImage: Image, id: String, name: String, bio: String, activeChallenges: [Progress] = [], previousChallenges: [Progress] = [], followers: [User] = [], following: [User] = []) {
+    init(userImage: String, id: String, name: String, bio: String, activeChallenges: [Progress] = [], previousChallenges: [Progress] = [], followers: [User] = [], following: [User] = []) {
         self.userImage = userImage
         self.id = id
         self.name = name

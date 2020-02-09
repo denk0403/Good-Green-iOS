@@ -14,7 +14,17 @@ struct ChallengeHeaderView: View {
     
     var body: some View {
         HStack {
-            challenge.iconImage.resizable().frame(width: iconSize, height: iconSize*10/9).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15))
+            Circle()
+                .fill(Color(Constants.ufoGreen))
+                .frame(width: iconSize*10/9 + 1, height: iconSize*10/9 + 1)
+                .offset(x: -6, y: 0)
+                .overlay(
+            Circle()
+                .stroke(Color(Constants.gunmetal), lineWidth: 2)
+                .frame(width: iconSize*10/9 + 1, height: iconSize*10/9 + 1)
+                .offset(x: -6, y: 0)
+                .overlay(
+            challenge.iconImage.resizable().frame(width: iconSize, height: iconSize*10/9).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15))))
             ChallengeInfoView()
         }
     }

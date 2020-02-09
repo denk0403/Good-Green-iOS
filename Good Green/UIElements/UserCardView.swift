@@ -27,7 +27,7 @@ struct UserCardView: View {
                 
             }) {
                 HStack {
-                    user.userImage
+                    Image(systemName: user.userImage)
                     .overlay(
                         Circle().stroke(Color(Constants.gunmetal), lineWidth: 1)
                             .frame(width: 20, height: 20)
