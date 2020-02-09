@@ -9,7 +9,7 @@
 import Foundation
 
 enum Vibe: String, Codable {
-    case water = "Water", trash = "Trash", trees = "Trees", animals = "Animals", transportation = "Transportation"
+    case water = "Water", trash = "Trash", trees = "Trees", animals = "Animals", transportation = "Transportation", clothing = "clothing"
 	
 	func toString() -> String {
 		return self.rawValue

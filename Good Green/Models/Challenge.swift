@@ -82,7 +82,7 @@ struct ChallengeDTO: Codable {
 	
 	enum CodingKeys: String, CodingKey {
 		case id = "uuid"
-		case name
+		case name = "id"
 		case iconImage = "icon"
 		case vibe
 		case description

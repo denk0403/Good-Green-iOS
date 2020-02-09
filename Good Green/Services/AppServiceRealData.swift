@@ -8,15 +8,18 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class AppServiceRealData: AppService {
-	private var authToken: String?
+	private var authToken: String? = "9gYFzFWl1t+P+kd67HzCS5N1A1Lwj4BvvtGFi/C/sbk="
 	
 	private var challenges: [Challenge] = []
 	private var progresses: [Progress] = []
 	private var users: [User] = []
 	
-	private var baseURL = "localhost:8080"
+	private var cancellables: Set<AnyCancellable> = []
+	
+	private var baseURL = "http://localhost:8080"
 	
 	func makeGetApiRequest<T: Decodable>(url: String, extraArguments: String = "", completion: @escaping (T?) -> ()) {
 		var request = URLRequest(url: URL(string: "\(baseURL)\(url)?auth=\(authToken!)\(extraArguments)")!)
@@ -62,7 +65,7 @@ class AppServiceRealData: AppService {
 		extraArguments.forEach({request.setValue($0.key, forHTTPHeaderField: $0.value)})
 		request.setValue(self.authToken!, forHTTPHeaderField: "auth")
 		URLSession.shared.dataTask(with: request) {(data, _, error) in
-			completion(error != nil)
+			completion(error != nil && (try? JSONSerialization.jsonObject(with: data ?? Data(), options: .allowFragments) as? [String: Any])?["error"] != nil)
 		}.resume()
 	}
 	
@@ -81,38 +84,33 @@ class AppServiceRealData: AppService {
 				return
 			}
 			
-			if let finish = self.parse(challengeDTO: actualChallenge) {
+			self.parse(challengeDTO: actualChallenge) {
+				guard let finish = $0 else {
+					callback(nil)
+					return
+				}
 				self.challenges.append(finish)
 				callback(finish)
-				return
 			}
-			callback(nil)
 		}
 	}
 	
 	
-	func parse(challengeDTO actualChallenge: ChallengeDTO) -> Challenge? {
-		var users = [User]()
-		let semaphore = DispatchSemaphore(value: 0)
-		for user in actualChallenge.challengeUsers {
-			self.getUser(userID: user) {user in
-				if user == nil {return}
-				users.append(user!)
-				semaphore.signal()
+	func parse(challengeDTO actualChallenge: ChallengeDTO, callback: @escaping (Challenge?) -> ()) {
+		self.getUserArray(actualChallenge.challengeUsers) { outsideUsers in
+			guard let users = outsideUsers else {
+				callback(nil)
+				return
 			}
-			semaphore.wait()
+			self.getUser(userID: actualChallenge.creator) {user in
+				if let actualUser = user {
+					callback(Challenge(id: actualChallenge.id, name: actualChallenge.name, iconImage: Image(actualChallenge.iconImage), vibe: actualChallenge.vibe, description: actualChallenge.description, threshold: actualChallenge.threshold, creator: actualUser, challengeUsers: users))
+					return
+				}
+				callback(nil)
+			}
+			
 		}
-        
-        var user: User?
-        self.getUser(userID: actualChallenge.creator) {innerUser in
-            user = innerUser
-            semaphore.signal()
-        }
-        semaphore.wait()
-        if let actualUser = user {
-            return Challenge(id: actualChallenge.id, name: actualChallenge.name, iconImage: Image(actualChallenge.iconImage), vibe: actualChallenge.vibe, description: actualChallenge.description, threshold: actualChallenge.threshold, creator: actualUser, challengeUsers: users)
-        }
-        return nil
 	}
 	
 	func getUserChallenges(with url: String, callback: @escaping ([Progress]?) -> Void) {
@@ -121,7 +119,7 @@ class AppServiceRealData: AppService {
 				callback(nil)
 				return
 			}
-			let semaphore = DispatchSemaphore(value: 0)
+			let semaphore = DispatchSemaphore(value: 1)
 			
 			var progresses = [Progress]()
 			var hasError = false
@@ -130,6 +128,7 @@ class AppServiceRealData: AppService {
 					guard let challenge = $0 else {
 						callback(nil)
 						hasError = true
+						semaphore.signal()
 						return
 					}
 					progresses.append(Progress(value: each.value, threshold: each.threshold,challenge: challenge))
@@ -173,33 +172,35 @@ class AppServiceRealData: AppService {
 			return
 		}
 		
-		guard let users = self.getUserArray(user.following) else {
-			completion(nil)
-			return
+		self.getUserArray(user.following, followers: false) { bigUsers in
+			guard let users = bigUsers else {
+				completion(nil)
+				return
+			}
+			let finishedUser = User(userImage: Image(user.userImage), id: user.id, name: user.name, bio: user.bio, activeChallenges: [], previousChallenges: [], followers: [], following: users)
+			self.users.append(finishedUser)
+			completion(finishedUser)
 		}
-		let finishedUser = User(userImage: Image(user.userImage), id: user.id, name: user.name, bio: user.bio, activeChallenges: [], previousChallenges: [], followers: [], following: users)
-		self.users.append(finishedUser)
-		completion(finishedUser)
+		
 	}
 	
-	func getUserArray(_ arr: [String]) -> [User]? {
-		let semaphore = DispatchSemaphore(value: 0)
+	func getUserArray(_ arr: [String], followers: Bool = true, callback: @escaping ([User]?) -> ()) {
+		let myGroup = DispatchGroup()
 		
-		var users = [User]()
-		var hasError = false
-		for eachUser in arr where !hasError{
-			self.getUser(userID: eachUser, getFollowers: false) {
-				guard let myUser = $0 else {
-					hasError = true
-					return
+		var users: [User] = []
+		
+		for user in arr {
+			myGroup.enter()
+			self.getUser(userID: user, getFollowers: followers) {
+				if let myUser = $0 {
+					users.append(myUser)
 				}
-				self.users.append(myUser)
-				users.append(myUser)
-				semaphore.signal()
+				myGroup.leave()
 			}
-			semaphore.wait()
 		}
-		return hasError ? nil : users
+		myGroup.notify(queue: .main) {
+			callback(users.count == arr.count ? users : nil)
+		}
 	}
 	
 	func authUser(username: String, password: String, callback: @escaping (User?) -> Void) {
@@ -219,23 +220,37 @@ class AppServiceRealData: AppService {
 				callback(nil)
 				return
 			}
-			callback(actualObjects.compactMap(self.createFeedObject(from:)))
+			let dispatchGroup = DispatchGroup()
+			var objects = [FeedObject]()
+			for object in actualObjects {
+				dispatchGroup.enter()
+				self.createFeedObject(from: object) {
+					if let object = $0 {
+						objects.append(object)
+					}
+					dispatchGroup.leave()
+				}
+			}
+			dispatchGroup.notify(queue: .main) {
+				callback(objects)
+			}
 		}
 	}
 	
-	func createFeedObject(from dto: FeedObjectDTO) -> FeedObject? {
-		let semaphore = DispatchSemaphore(value: 0)
+	func createFeedObject(from dto: FeedObjectDTO, callback: @escaping (FeedObject?) -> ()) {
 		var feedObject: FeedObject?
 		self.getChallenge(challengeID: dto.challengeId) { challenge in
-			self.getUser(userID: dto.challengeId, getFollowers: false) {user in
-				if let users = self.getUserArray(dto.likes), let actualChallenge = challenge, let actualUser = user {
-					feedObject = FeedObject(id: dto.id, user: actualUser, challenge: actualChallenge, likes: users, feedType: dto.feedType ?? FeedType.created, date: dto.date)
+			self.getUser(userID: dto.creator, getFollowers: false) {user in
+				self.getUserArray(dto.likes){ users in
+					if let actualChallenge = challenge, let actualUser = user {
+						feedObject = FeedObject(id: dto.id, user: actualUser, challenge: actualChallenge, likes: users ?? [], feedType: dto.feedType ?? FeedType.created, date: dto.date.toISODate() ?? Date())
+						callback(feedObject)
+					} else {
+						callback(nil)
+					}
 				}
-				semaphore.signal()
 			}
 		}
-		semaphore.wait()
-		return feedObject
 	}
 	
 	func getProgress(challengeID: String, userID: String, callback: @escaping (Progress?) -> Void) {
@@ -265,12 +280,18 @@ class AppServiceRealData: AppService {
 	
 	func createChallenge(name: String, description: String, vibe: Vibe, icon: Image, callback: @escaping (Challenge?) -> Void) {
 		self.makePostApiRequest(url: "/challenge/create", extraArguments: ["id": name, "icon": "house", "vibe": vibe.toString(), "description": description, "threshold": "1"]) {(challenge: ChallengeDTO?) in
-			if let actualChallenge = challenge, let nonDTO = self.parse(challengeDTO: actualChallenge) {
-				self.challenges.append(nonDTO)
-				callback(nonDTO)
-				return
+			if let actualChallenge = challenge {
+				self.parse(challengeDTO: actualChallenge) {
+					 if let nonDTO = $0 {
+						self.challenges.append(nonDTO)
+						callback(nonDTO)
+						return
+					}
+					callback(nil)
+				}
+			} else {
+				callback(nil)
 			}
-			callback(nil)
 		}
 	}
 	
@@ -304,9 +325,30 @@ class AppServiceRealData: AppService {
     
     func searchChallenges(query: String, callback: @escaping ([Challenge]?) -> Void) {
 		self.makeGetApiRequest(url: "/search/challenge") {(challenges: [ChallengeDTO]?) in
-			callback(challenges?.compactMap(self.parse(challengeDTO:)))
+			let challengePublishers = challenges?.map(self.getChallengePublisher(dto:))
+			if let pubs = challengePublishers {
+				pubs.dropFirst().reduce(pubs.first!, {
+					return $0.merge(with: $1).eraseToAnyPublisher()
+				}).collect(pubs.count)
+				.sink(receiveValue: {
+					callback($0.compactMap({tr in tr}))
+				}).store(in: &self.cancellables)
+			} else {
+				callback(nil)
+			}
+			
 		}
     }
+	
+	func getChallengePublisher(dto: ChallengeDTO) -> AnyPublisher<Challenge?, Never> {
+		let passthrough = PassthroughSubject<Challenge?, Never>()
+		
+		self.parse(challengeDTO: dto) {
+			passthrough.send($0)
+		}
+		
+		return passthrough.eraseToAnyPublisher()
+	}
 	
 	func createUser(username: String, password: String, callback: @escaping (User?) -> ()) {
 		self.makePostApiRequest(url: "/user/create", extraArguments: ["username": username, "password": password]) { (auth: Authentication?) in
@@ -325,7 +367,20 @@ class AppServiceRealData: AppService {
 				callback(nil)
 				return
 			}
-			callback(actualObjects.compactMap(self.createFeedObject(from:)))
+			let dispatchGroup = DispatchGroup()
+			var objects = [FeedObject]()
+			for object in actualObjects {
+				dispatchGroup.enter()
+				self.createFeedObject(from: object) {
+					if let object = $0 {
+						objects.append(object)
+					}
+					dispatchGroup.leave()
+				}
+			}
+			dispatchGroup.notify(queue: .main) {
+				callback(objects)
+			}
 		}
 	}
 }

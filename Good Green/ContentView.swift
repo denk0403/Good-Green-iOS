@@ -52,7 +52,9 @@ struct ContentView: View {
             }.tag(2)
         }
 		.navigationBarTitle(Text(""), displayMode: .inline)
-		}.environment(\.appService, AppServiceImpl())
+		}
+		.environment(\.appService, AppServiceRealData())
+//		.environment(\.appService, AppServiceImpl())
     }
 }
 

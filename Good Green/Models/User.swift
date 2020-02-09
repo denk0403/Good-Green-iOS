@@ -90,14 +90,14 @@ struct UserDTO: Codable {
     
     let bio: String
     
-    var activeChallenges: [ProgressDTO]
+    var activeChallenges: [String]
     
-    var previousChallenges: [ProgressDTO]
+    var previousChallenges: [String]
     
     var following: [String]
 	
 	enum CodingKeys: String, CodingKey {
-		case userImage = "icon"
+		case userImage = "image"
 		case id = "username"
 		case name
 		case bio
