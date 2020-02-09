@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SelectVibeButton: View {
-    @State private var selectedVibe = 0
+    @Binding var selectedVibe: Int
     @State private var shouldShowVibePicker = false
     @State private var showModal = false
     
@@ -46,17 +46,7 @@ struct SelectVibeButton: View {
                         
                 }
             
-            
-            Button(action: {
-                print ("navigating")
-            }) {
-                RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth / 2, height: buttonHeight)
-                .foregroundColor(Color(Constants.mint))
-                .overlay(
-                    Text("Create")
-                        .foregroundColor(Color(Constants.gunmetal))
-                            .font(.custom("Helvetics Neue", size: buttonTextSize)))
-            }
+
             }
             
             if (shouldShowVibePicker) {
@@ -88,8 +78,8 @@ struct SelectVibeButton: View {
     }
 }
 
-struct SelectVibeButton_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectVibeButton()
-    }
-}
+//struct SelectVibeButton_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SelectVibeButton()
+//    }
+//}

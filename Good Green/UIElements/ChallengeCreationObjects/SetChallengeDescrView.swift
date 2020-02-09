@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct SetChallengeDescrView: View {
-    @State private var challengeDesc: String = ""
+    @Binding var challengeDesc: String
      let iconSize: CGFloat = 100
     var body: some View {
         HStack {
                 VStack {
-                        TextField("Enter Challenge Descripion...", text: $challengeDesc)
+                    TextField("Enter Challenge Descripion...", text: self.$challengeDesc)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 260)
                     .foregroundColor(Color(Constants.gunmetal))
@@ -25,8 +25,8 @@ struct SetChallengeDescrView: View {
     }
 }
 
-struct SetChallengeDescrView_Previews: PreviewProvider {
-    static var previews: some View {
-        SetChallengeDescrView()
-    }
-}
+//struct SetChallengeDescrView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SetChallengeDescrView()
+//    }
+//}
