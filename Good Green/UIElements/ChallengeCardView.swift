@@ -16,6 +16,7 @@ struct ChallengeCardView: View {
     let textFontFamily = "Helvetica Neue"
     
     var body: some View {
+        NavigationLink(destination: LoadChallengePageView(challengeId: challenge.id)) {
         ZStack {
             RoundedRectangle(cornerRadius: cardCornerRadius, style: .continuous)
                 .fill(Color(Constants.mint))
@@ -27,7 +28,7 @@ struct ChallengeCardView: View {
                 
             }) {
                 HStack {
-                    challenge.iconImage
+                    challenge.iconImage.resizable().frame(width: 13, height: 13)
                     .overlay(
                         Circle().stroke(Color(Constants.gunmetal), lineWidth: 1)
                             .frame(width: 20, height: 20)
@@ -47,6 +48,7 @@ struct ChallengeCardView: View {
                 }
             }
             .frame(width: 319, height: 32)
+        }
         }
     }
 }

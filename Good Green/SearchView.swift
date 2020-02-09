@@ -42,42 +42,24 @@ struct SearchView: View {
                         self.searchingType == .users
                             ? self.appService.getUsers(query: self.searchQuery, callback: {
                                 
-//                                if let users = $0 {
-//                                    self.users = users
-//                                } else {
-//                                    self.isError = true
-//                                }
-//                                self.loading = false
-                                
-                                let result = $0
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                    if let users = result {
-                                        self.users = users
-                                    } else {
-                                        self.isError = true
-                                    }
-                                    self.loading = false
+                                if let users = $0 {
+                                    self.users = users
+                                } else {
+                                    self.isError = true
                                 }
+                                self.loading = false
+
                                 
                             })
                             : self.appService.searchChallenges(query: self.searchQuery, callback: {
                                 
-//                                if let challenges = $0 {
-//                                    self.challenges = challenges
-//                                 } else {
-//                                    self.isError = true
-//                                }
-//                                self.loading = false
-                                
-                                let result = $0
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                    if let challenges = result {
-                                        self.challenges = challenges
-                                     } else {
-                                        self.isError = true
-                                    }
-                                    self.loading = false
+                                if let challenges = $0 {
+                                    self.challenges = challenges
+                                 } else {
+                                    self.isError = true
                                 }
+                                self.loading = false
+                                
                             })
                         }
                     )
