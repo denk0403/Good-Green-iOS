@@ -19,65 +19,101 @@ struct AccessAccountView: View {
     let buttonTextSize: CGFloat = 20
     let buttonCornerRadius: CGFloat = 10
     
+    @Environment(\.appService) var appService: AppService
     @State private var selected: AccessAccountType = .waiting
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     
     var body: some View {
-        Button(action: {
-            withAnimation { self.selected = .waiting }
-        }) {
-            ZStack{
-                Color(Constants.whiteSmoke).edgesIgnoringSafeArea(.all)
-        VStack {
-            VStack {
-            Image("logo").resizable().scaledToFit()
-            HStack {
-                Spacer()
-                Button(action: {
-                    withAnimation { self.selected = .login }
-                }) {
-                    RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(RoundedRectangle(cornerRadius: buttonCornerRadius).stroke(Color(Constants.gunmetal))).overlay(Text("Log In").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
-                    .foregroundColor(Color(Constants.ufoGreen))
-                }
-                
-                Spacer()
-                
-                Button(action: {
-                    withAnimation { self.selected = .signup }
-                }) {
-                    RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(RoundedRectangle(cornerRadius: buttonCornerRadius).stroke(Color(Constants.gunmetal))).overlay(Text("Sign Up").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
-                    .foregroundColor(Color(Constants.coral))
-                }
-                Spacer()
-                }
-                
-            }
-            
-            if (self.selected != .waiting) {
-//                self.selected == .login
-//                    ? Form {
-//
-//                        }
-//                    : Form {
-//
-//                }
-
-                
-                Button(action: {
+        let validState = (self.selected == .login && (!self.username.isEmpty && !self.password.isEmpty))
+            || ( self.selected == .signup && (!self.username.isEmpty && !self.password.isEmpty) && (self.password == self.confirmPassword))
+        return ZStack{
+            Color(Constants.whiteSmoke).edgesIgnoringSafeArea(.all)
+                VStack {
+                    VStack {
+                        Image("logo").resizable().scaledToFit().onTapGesture {
+                            withAnimation {
+                                self.selected = .waiting
+                            }
+                        }
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            withAnimation { self.selected = .login }
+                        }) {
+                            RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(RoundedRectangle(cornerRadius: buttonCornerRadius).stroke(Color(Constants.gunmetal))).overlay(Text("Log In").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
+                            .foregroundColor(Color(Constants.ufoGreen))
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            withAnimation { self.selected = .signup }
+                        }) {
+                            RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(RoundedRectangle(cornerRadius: buttonCornerRadius).stroke(Color(Constants.gunmetal))).overlay(Text("Sign Up").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
+                            .foregroundColor(Color(Constants.coral))
+                        }
+                        Spacer()
+                        }
+                        
+                    }
                     
-                }) {
-                    RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(RoundedRectangle(cornerRadius: buttonCornerRadius).stroke(Color(Constants.gunmetal))).overlay(Text("Submit").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
-                        .foregroundColor(Color(Constants.whiteSmoke))
-                }.transition(.scale)
-            }
-        
-                }
-                
-            }
-            
-        }.buttonStyle(PlainButtonStyle())
+                    if (self.selected != .waiting) {
+                        VStack {
+                            ZStack {
+                                    RoundedRectangle(cornerRadius: buttonCornerRadius, style: .continuous)
+                                        .fill(Color(Constants.whiteSmoke))
+                                        .frame(width: 319, height: 32.34)
+                                       .overlay(
+                                           RoundedRectangle(cornerRadius: buttonCornerRadius, style: .continuous)
+                                            .stroke(Color(Constants.gunmetal), lineWidth: 1))
+                                    TextField("Enter a username", text: self.$username).padding([.leading, .trailing])
+                                }.frame(width: 319, height: 32.34)
+                            .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                            
+                            
+                            
+                            ZStack {
+                                RoundedRectangle(cornerRadius: buttonCornerRadius, style: .continuous)
+                                    .fill(Color(Constants.whiteSmoke))
+                                    .frame(width: 319, height: 32.34)
+                                   .overlay(
+                                       RoundedRectangle(cornerRadius: buttonCornerRadius, style: .continuous)
+                                        .stroke(Color(self.selected == .signup && self.password != self.confirmPassword ? Constants.coral : Constants.gunmetal), lineWidth: self.selected == .signup && self.password != self.confirmPassword ? 2 : 1))
+                                TextField("Enter a pasword", text: self.$password).padding([.leading, .trailing])
+                            }.frame(width: 319, height: 32.34).padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                            
+                            if (self.selected == .signup) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: buttonCornerRadius, style: .continuous)
+                                        .fill(Color(Constants.whiteSmoke))
+                                        .frame(width: 319, height: 32.34)
+                                       .overlay(
+                                           RoundedRectangle(cornerRadius: buttonCornerRadius, style: .continuous)
+                                            .stroke(Color(self.selected == .signup && self.password != self.confirmPassword ? Constants.coral : Constants.gunmetal), lineWidth: self.selected == .signup && self.password != self.confirmPassword ? 2 : 1))
+                                    TextField("Confirm pasword", text: self.$confirmPassword).padding([.leading, .trailing])
+                                }.frame(width: 319, height: 32.34).padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                            }
+                            
+                            Button(action: {
+                                
+                            }) {
+                                RoundedRectangle(cornerRadius: buttonCornerRadius)
+                                    .frame(width: buttonWidth, height: buttonHeight)
+                                    .overlay(RoundedRectangle(cornerRadius: buttonCornerRadius)
+                                        .stroke(Color(Constants.gunmetal)))
+                                    .overlay(Text("Submit")
+                                            .foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
+                                    .foregroundColor(validState ? Color.green : Color.gray)
+                            }.disabled(!validState).transition(.scale).padding(EdgeInsets(top: 10, leading: 0, bottom: 5, trailing: 0)).opacity(validState ? 1 : 0.25)
+
+                        }.padding(EdgeInsets(top: 25, leading: 0, bottom: 0, trailing: 0))
+                    }
+                        
+                    }
+                        
+        }
 
         
     }
@@ -85,6 +121,6 @@ struct AccessAccountView: View {
 
 struct AccessAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccessAccountView()
+        AccessAccountView().environment(\.appService, AppServiceImpl())
     }
 }
