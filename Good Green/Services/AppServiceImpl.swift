@@ -93,4 +93,8 @@ class AppServiceImpl: AppService {
         callback(true)
     }
     
+    func searchChallenges(query: String, callback: @escaping ([Challenge]?) -> Void) {
+        callback([Constants.challenge1, Constants.challenge2, Constants.challenge3])
+    }
+    
 }

@@ -14,7 +14,14 @@ struct LoadingView<Content: View>: View {
     let content: () -> Content
     var body: some View {
         if self.isLoading {
-            return AnyView(Text("Loading"))
+            return AnyView(ZStack {
+                Color(Constants.whiteSmoke)
+                HStack {
+                    Image(systemName: "hare").resizable().frame(width: 50, height: 40)
+                    Text("Loading...").font(.custom("Helvetica Neue", size: 25))
+                }
+                
+            })
         } else {
             return AnyView(content())
         }

@@ -11,7 +11,7 @@ import SwiftUI
 struct SearchBarView: View {
      let cornerR: CGFloat = 12
     
-    @State private var search = ""
+    @Binding var search: String
     
     var body: some View {
             ZStack {
@@ -35,6 +35,8 @@ struct SearchBarView: View {
 
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBarView()
-    }
+        SearchBarView(search: Binding(get: {
+            "Hello"
+        }, set: {_ = $0})
+        )}
 }
