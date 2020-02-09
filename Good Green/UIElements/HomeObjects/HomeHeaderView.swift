@@ -16,9 +16,9 @@ struct HomeHeaderView: View {
                 .stroke(Color(Constants.gunmetal), lineWidth: 2)
                 .frame(width: 70)
                 .overlay(
-            Image(systemName: "flame")
+                    Image(systemName: user.userImage)
                 .resizable()
-                .frame(width: 60, height: 60))
+                .clipShape(Circle()))
             HomeInfoView(user: user)
         }.scaledToFit()
     }
