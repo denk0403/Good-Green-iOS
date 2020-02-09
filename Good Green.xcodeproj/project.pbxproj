@@ -211,6 +211,7 @@
 				D3FD7D1D23EE81350073D515 /* UIElements */,
 				D3FD7D1323EE7B920073D515 /* Models */,
 				46E2975323EE51E6006849C8 /* AppDelegate.swift */,
+				D3FD7D2823EF43590073D515 /* FeedType.swift */,
 				46E2975523EE51E6006849C8 /* SceneDelegate.swift */,
 				46E2975723EE51E6006849C8 /* ContentView.swift */,
 				D3D5BB5723EF77990017715B /* SearchView.swift */,
@@ -333,7 +334,6 @@
 				D3FD7D1823EE7D2A0073D515 /* User.swift */,
 				D3FD7D1A23EE7E2F0073D515 /* Vibe.swift */,
 				46E2978923EE952C006849C8 /* Progress.swift */,
-				D3FD7D2823EF43590073D515 /* FeedType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
