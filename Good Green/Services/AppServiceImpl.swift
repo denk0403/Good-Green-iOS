@@ -101,5 +101,12 @@ class AppServiceImpl: AppService {
     func searchChallenges(query: String, callback: @escaping ([Challenge]?) -> Void) {
         callback([Constants.challenge1, Constants.challenge2, Constants.challenge3])
     }
+	
+	func createUser(username: String, password: String, callback: @escaping (User?) -> ()) {
+		callback(Constants.user2)
+	}
+	func getUserFeed(userID: String, callback: @escaping ([FeedObject]?) -> ()) {
+		callback([Constants.fo1, Constants.fo3])
+	}
     
 }
