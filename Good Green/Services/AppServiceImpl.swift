@@ -54,8 +54,7 @@ class AppServiceImpl: AppService {
     func getFeed(offset: Int, callback: @escaping ([FeedObject]?) -> Void) {
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-			callback(nil)
-//			callback([Constants.fo1, Constants.fo2])
+			callback([Constants.fo1, Constants.fo2])
 		}
     }
     
