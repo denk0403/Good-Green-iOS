@@ -18,36 +18,17 @@ struct FeedObjectView: View {
     @State private var plantImg = "plant-selected"
 
     
-    let cornerR: CGFloat = 12
+   
     var body: some View {
         VStack {
                     // main body showing challenge, icon, and description
                     ZStack {
-                        RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                            .fill(Color(Constants.whiteSmoke))
-                            .frame(width: 319, height: 124.34)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                                    .stroke(Color(Constants.gunmetal), lineWidth: 1))
-                       
+                       FeedObjectBackgroundRectView()
+                        
                         Button(action: {
                             self.visitChallengePage()
                         }) {
-                        // challenge name
-                            Text(feedObject.challenge.name)
-                                .font(.custom("Helvetica Neue", size: 20))
-                                .foregroundColor(Color(Constants.gunmetal))
-                                .offset(x: -25, y: -6)
-                                .padding(EdgeInsets(top: 0, leading: 50, bottom: 50, trailing: 50))
-                        Image(systemName: "house.fill")
-                        .resizable()
-                            .frame(width: 32, height: 32)
-                        .clipShape(Circle())
-                            .overlay(
-                                Circle().stroke(Color(Constants.gunmetal), lineWidth: 1))
-                            .offset(x: -230, y: -30)
-                            
-                            
+                            FeedObjectChallengeHeadingView(feedObject: feedObject)
                         }
                             // challenge description
                             Text(feedObject.challenge.description)
@@ -95,14 +76,14 @@ struct FeedObjectView: View {
                         }
                     
                         // who did it and what they did bubble at top
-                        RoundedRectangle(cornerRadius: cornerR, style: .continuous)
+            RoundedRectangle(cornerRadius: Constants.cornerR, style: .continuous)
                             .fill(Color(Constants.ufoGreen))
                                        .frame(width: 201, height: 17)
                             .offset(y: -140)
                             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 100))
                         .overlay(
                             ZStack {
-                                    RoundedRectangle(cornerRadius: cornerR, style: .continuous)
+                                RoundedRectangle(cornerRadius: Constants.cornerR, style: .continuous)
                                         .stroke(Color(Constants.gunmetal), lineWidth: 1)
                                     .offset(x: -45, y: -140)
                                     .frame(width: 201, height: 17)
