@@ -106,7 +106,7 @@ struct AccessAccountView: View {
 											self.selection = 0
 										}
                                     })
-                                    : self.appService.createUser(username: self.password, password: self.password, callback: {
+                                    : self.appService.createUser(username: self.username, password: self.password, callback: {
                                         if $0 != nil {
 											self.selection = 0
 										}

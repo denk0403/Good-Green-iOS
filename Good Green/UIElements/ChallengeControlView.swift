@@ -52,9 +52,10 @@ struct ChallengeControlView: View {
             }) {
                 RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(Text("End this challenge ").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize))).foregroundColor(Color(Constants.coral))
             }
-		}.alert(isPresented: self.$shouldShow) {
-			Alert(title: Text(self.textToShow))
 		}
+//		.alert(isPresented: self.$shouldShow) {
+//			Alert(title: Text(self.textToShow))
+//		}
 	}
 }
 

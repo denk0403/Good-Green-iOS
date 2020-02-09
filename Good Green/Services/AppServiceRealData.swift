@@ -24,7 +24,7 @@ class AppServiceRealData: AppService {
 	private var baseURL = "http://localhost:8080"
 	
 	func makeGetApiRequest<T: Decodable>(url: String, extraArguments: String = "", completion: @escaping (T?) -> ()) {
-		var request = URLRequest(url: URL(string: "\(baseURL)\(url)?auth=\(authToken!)\(extraArguments)")!)
+		var request = URLRequest(url: URL(string: "\(baseURL)\(url)?auth=\(authToken!)\(extraArguments)".replacingOccurrences(of: " ", with: "+"))!)
 		request.httpMethod = "GET"
 		URLSession.shared.dataTask(with: request) {(data, _, error) in
 			guard error == nil else {
@@ -42,7 +42,7 @@ class AppServiceRealData: AppService {
 	}
 	
 	func makePostApiRequest<T: Decodable>(url: String, extraArguments: [String: String] = [:], completion: @escaping (T?) -> ()) {
-		var request = URLRequest(url: URL(string: "\(baseURL)\(url)")!)
+		var request = URLRequest(url: URL(string: "\(baseURL)\(url)".replacingOccurrences(of: " ", with: "+"))!)
 		request.httpMethod = "POST"
 		var newArguments = extraArguments
 		newArguments["auth"] = authToken!
@@ -62,7 +62,7 @@ class AppServiceRealData: AppService {
 	}
 	
 	func makePostApiRequestBool(url: String, extraArguments: [String: String] = [:], completion: @escaping (Bool) -> ()) {
-		var request = URLRequest(url: URL(string: "\(baseURL)\(url)")!)
+		var request = URLRequest(url: URL(string: "\(baseURL)\(url)".replacingOccurrences(of: " ", with: "+"))!)
 		request.httpMethod = "POST"
 		var newArguments = extraArguments
 		newArguments["auth"] = authToken!
@@ -121,6 +121,10 @@ class AppServiceRealData: AppService {
 			guard let actualProgress = progress else {
 				callback(nil)
 				return
+			}
+			
+			if actualProgress.isEmpty {
+				callback([])
 			}
 			let group = DispatchGroup()
 			
@@ -378,7 +382,7 @@ class AppServiceRealData: AppService {
 	}
 	
 	func createUser(username: String, password: String, callback: @escaping (User?) -> ()) {
-		self.makePostApiRequest(url: "/user/create", extraArguments: ["username": username, "password": password, "picture": "person", "name": "Jack", "bio": "Just a fun Northeastern student"]) { (auth: Authentication?) in
+		self.makePostApiRequest(url: "/user/create", extraArguments: ["username": username, "password": password, "picture": "person", "name": username, "bio": "Just a fun Northeastern student"]) { (auth: Authentication?) in
 			guard let authentication = auth else {
 				callback(nil)
 				return
