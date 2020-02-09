@@ -24,10 +24,8 @@ struct FeedListView: View {
                     Spacer()
                     Spacer()
                 }
-                
-				
 			}
-		}.colorMultiply(Color(Constants.whiteSmoke))
+			}.colorMultiply(Color(Constants.whiteSmoke))
         
     }
 }

@@ -307,6 +307,27 @@ class AppServiceRealData: AppService {
 			callback(challenges?.compactMap(self.parse(challengeDTO:)))
 		}
     }
+	
+	func createUser(username: String, password: String, callback: @escaping (User?) -> ()) {
+		self.makePostApiRequest(url: "/user/create", extraArguments: ["username": username, "password": password]) { (auth: Authentication?) in
+			guard let authentication = auth else {
+				callback(nil)
+				return
+			}
+			self.authToken = authentication.key
+			self.parse(user: authentication.value, getFollowers: true, completion: callback)
+		}
+	}
+	
+	func getUserFeed(userID: String, callback: @escaping ([FeedObject]?) -> ()) {
+		self.makeGetApiRequest(url: "/feed/user/\(userID)") {(fdto: [FeedObjectDTO]?) in
+			guard let actualObjects = fdto else {
+				callback(nil)
+				return
+			}
+			callback(actualObjects.compactMap(self.createFeedObject(from:)))
+		}
+	}
 }
 
 struct Authentication: Codable {

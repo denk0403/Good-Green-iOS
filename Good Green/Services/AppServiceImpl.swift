@@ -54,8 +54,7 @@ class AppServiceImpl: AppService {
     func getFeed(offset: Int, callback: @escaping ([FeedObject]?) -> Void) {
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-			callback(nil)
-//			callback([Constants.fo1, Constants.fo2])
+			callback([Constants.fo1, Constants.fo2])
 		}
     }
     
@@ -102,5 +101,12 @@ class AppServiceImpl: AppService {
     func searchChallenges(query: String, callback: @escaping ([Challenge]?) -> Void) {
         callback([Constants.challenge1, Constants.challenge2, Constants.challenge3])
     }
+	
+	func createUser(username: String, password: String, callback: @escaping (User?) -> ()) {
+		callback(Constants.user2)
+	}
+	func getUserFeed(userID: String, callback: @escaping ([FeedObject]?) -> ()) {
+		callback([Constants.fo1, Constants.fo3])
+	}
     
 }
