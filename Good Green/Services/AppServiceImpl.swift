@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-class AppServiceImpl {
+class AppServiceImpl: AppService {
     
     var userID: String?;
     
@@ -29,63 +29,67 @@ class AppServiceImpl {
         Utils.follow(follower: &Constants.user4, following: &Constants.user3)
     }
     
-    func getChallenge(challengeID: String, callback: (Challenge?) -> Void) {
+    func getChallenge(challengeID: String, callback: @escaping (Challenge?) -> Void) {
         callback(Constants.challenge1)
     }
     
-    func getUserChallenges(callback: ([Progress]?) -> Void) {
+    func getUserChallenges(callback: @escaping ([Progress]?) -> Void) {
         callback([Constants.progress1, Constants.progress2, Constants.progress3])
     }
     
-    func getUser(userID: String, callback: (User?) -> Void) {
+    func getUser(userID: String, callback: @escaping (User?) -> Void) {
         callback(Constants.user1)
     }
     
-    func authUser(username: String, password: String, callback: (User?) -> Void) {
+    func authUser(username: String, password: String, callback: @escaping (User?) -> Void) {
         callback(Constants.user2)
     }
     
-    func getFeed(offset: Int, callback: ([FeedObject]?) -> Void) {
-        callback([Constants.fo1, Constants.fo2])
+    func getFeed(offset: Int, callback: @escaping ([FeedObject]?) -> Void) {
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+			callback(nil)
+//			callback([Constants.fo1, Constants.fo2])
+		}
     }
     
-    func getProgress(challengeID: String, userID: String, callback: (Progress?) -> Void) {
+    func getProgress(challengeID: String, userID: String, callback: @escaping (Progress?) -> Void) {
         callback(Constants.progress2)
     }
     
-    func getUsers(query: String, callback: ([User]?) -> Void) {
+    func getUsers(query: String, callback: @escaping ([User]?) -> Void) {
         callback([Constants.user1, Constants.user3])
     }
     
-    func createChallenge(name: String, description: String, vibe: Vibe, icon: Image, callback: (Challenge?) -> Void) {
+    func createChallenge(name: String, description: String, vibe: Vibe, icon: Image, callback: @escaping (Challenge?) -> Void) {
         callback(Constants.challenge4)
     }
     
-    func acceptChallenge(challengeID: String, callback: (Bool) -> Void) {
+    func acceptChallenge(challengeID: String, callback: @escaping (Bool) -> Void) {
         callback(true)
     }
     
-    func dropChallenge(challengeID: String, callback: (Bool) ->  Void) {
+    func dropChallenge(challengeID: String, callback: @escaping (Bool) ->  Void) {
         callback(true)
     }
     
-    func completeChallenge(challengeID: String, callback: (Bool) -> Void) {
+    func completeChallenge(challengeID: String, callback: @escaping (Bool) -> Void) {
         callback(true)
     }
     
-    func likePost(feedID: String, callback: (Bool) -> Void) {
+    func likePost(feedID: String, callback: @escaping (Bool) -> Void) {
         callback(true)
     }
     
-    func unlikePost(feedID: String, callback: (Bool) -> Void) {
+    func unlikePost(feedID: String, callback: @escaping (Bool) -> Void) {
         callback(true)
     }
     
-    func followUser(userID: String, callback: (Bool) -> Void) {
+    func followUser(userID: String, callback: @escaping (Bool) -> Void) {
         callback(true)
     }
     
-    func unfollowUser(userID: String, callback: (Bool) -> Void) {
+    func unfollowUser(userID: String, callback: @escaping (Bool) -> Void) {
         callback(true)
     }
     
