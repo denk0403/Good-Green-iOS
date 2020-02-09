@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LoadingView<Content: View>: View {
-    var isLoading: Bool
+    let isLoading: Bool
     
     let content: () -> Content
     var body: some View {

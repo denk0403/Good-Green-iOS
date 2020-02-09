@@ -43,22 +43,37 @@ struct ContentView: View {
                 }
                 .tag(1)
         
-            HomeView()
+			HomeView()
                 .tabItem{
                     VStack {
                         Image(systemName: "house")
                         Text("Home")
                     }
-                .tag(2)
-            }
+            }.tag(2)
         }
         .navigationBarTitle("GoodGreen")
-    }
+		}.environment(\.appService, AppServiceImpl())
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct Key: EnvironmentKey {
+	static let defaultValue: AppService = AppServiceImpl()
+}
+
+
+extension EnvironmentValues {
+    var appService: AppService {
+        get {
+            return self[Key.self]
+        }
+        set {
+            self[Key.self] = newValue
+        }
     }
 }
