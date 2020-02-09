@@ -169,7 +169,7 @@ class AppServiceRealData: AppService {
 	
 	func parse(user: UserDTO, getFollowers: Bool, completion: @escaping (User?) -> ()) {
 		if !getFollowers {
-			let doneUser = User(userImage: Image(user.userImage), id: user.id, name: user.name, bio: user.bio)
+			let doneUser = User(userImage: user.userImage, id: user.id, name: user.name, bio: user.bio)
 			self.users.append(doneUser)
 			completion(doneUser)
 			return
@@ -179,7 +179,7 @@ class AppServiceRealData: AppService {
 			completion(nil)
 			return
 		}
-		let finishedUser = User(userImage: Image(user.userImage), id: user.id, name: user.name, bio: user.bio, activeChallenges: [], previousChallenges: [], followers: [], following: users)
+		let finishedUser = User(userImage: user.userImage, id: user.id, name: user.name, bio: user.bio, activeChallenges: [], previousChallenges: [], followers: [], following: users)
 		self.users.append(finishedUser)
 		completion(finishedUser)
 	}

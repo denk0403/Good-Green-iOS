@@ -59,6 +59,8 @@
 		D3D5BB7523F00C4D0017715B /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB7423F00C4D0017715B /* ProgressView.swift */; };
 		D3D5BB7723F00ED30017715B /* ProgressBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB7623F00ED30017715B /* ProgressBodyView.swift */; };
 		D3D5BB7923F00F190017715B /* ProgressChallengeHeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB7823F00F190017715B /* ProgressChallengeHeadingView.swift */; };
+		D3D5BB7C23F01D180017715B /* SelectVibeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB7B23F01D180017715B /* SelectVibeButton.swift */; };
+		D3D5BB7E23F026A30017715B /* ChallengeCreationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB7D23F026A30017715B /* ChallengeCreationHeader.swift */; };
 		D3FD7D1523EE7BBA0073D515 /* FeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D1423EE7BBA0073D515 /* FeedObject.swift */; };
 		D3FD7D1723EE7C870073D515 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D1623EE7C870073D515 /* Challenge.swift */; };
 		D3FD7D1923EE7D2A0073D515 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD7D1823EE7D2A0073D515 /* User.swift */; };
@@ -143,6 +145,8 @@
 		D3D5BB7423F00C4D0017715B /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		D3D5BB7623F00ED30017715B /* ProgressBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBodyView.swift; sourceTree = "<group>"; };
 		D3D5BB7823F00F190017715B /* ProgressChallengeHeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressChallengeHeadingView.swift; sourceTree = "<group>"; };
+		D3D5BB7B23F01D180017715B /* SelectVibeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVibeButton.swift; sourceTree = "<group>"; };
+		D3D5BB7D23F026A30017715B /* ChallengeCreationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCreationHeader.swift; sourceTree = "<group>"; };
 		D3FD7D1423EE7BBA0073D515 /* FeedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedObject.swift; sourceTree = "<group>"; };
 		D3FD7D1623EE7C870073D515 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		D3FD7D1823EE7D2A0073D515 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -312,6 +316,15 @@
 			path = ProgressObject;
 			sourceTree = "<group>";
 		};
+		D3D5BB7A23F01C280017715B /* ChallengeCreationObjects */ = {
+			isa = PBXGroup;
+			children = (
+				D3D5BB7B23F01D180017715B /* SelectVibeButton.swift */,
+				D3D5BB7D23F026A30017715B /* ChallengeCreationHeader.swift */,
+			);
+			path = ChallengeCreationObjects;
+			sourceTree = "<group>";
+		};
 		D3FD7D1323EE7B920073D515 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +341,7 @@
 		D3FD7D1D23EE81350073D515 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
+				D3D5BB7A23F01C280017715B /* ChallengeCreationObjects */,
 				D3D5BB7323F00C3D0017715B /* ProgressObject */,
 				D3D5BB6E23F0021E0017715B /* HomeObjects */,
 				D3D5BB6523EF95570017715B /* FeedObject */,
@@ -510,6 +524,7 @@
 				46E2979C23EF4F36006849C8 /* ProgressMocks.swift in Sources */,
 				A045B32D23EFB92100411A27 /* AppServiceRealData.swift in Sources */,
 				D3D5BB6223EF81200017715B /* CompletedChallengesButtonView.swift in Sources */,
+				D3D5BB7C23F01D180017715B /* SelectVibeButton.swift in Sources */,
 				46E2979623EF378C006849C8 /* Constants.swift in Sources */,
 				D3D5BB7023F0024C0017715B /* HomeActiveComplChallView.swift in Sources */,
 				46E297BB23EFF5E6006849C8 /* AccessAccountView.swift in Sources */,
@@ -532,6 +547,7 @@
 				46E297B523EFB6D8006849C8 /* SelectSearchTypeView.swift in Sources */,
 				A045B32B23EFAC6500411A27 /* OtherUsersFullView.swift in Sources */,
 				46E2978A23EE952C006849C8 /* Progress.swift in Sources */,
+				D3D5BB7E23F026A30017715B /* ChallengeCreationHeader.swift in Sources */,
 				D3D5BB5C23EF7CCE0017715B /* HomeHeaderView.swift in Sources */,
 				D3D5BB5223EF4A8E0017715B /* FeedView.swift in Sources */,
 				D3FD7D2123EE817E0073D515 /* FeedObjectView.swift in Sources */,
