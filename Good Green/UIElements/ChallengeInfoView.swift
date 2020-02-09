@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ChallengeInfoView: View {
-    let challenge: Challenge = Constants.challenge1
+    let challenge: Challenge
     let nameSize: CGFloat = 30
     let detailsSize: CGFloat = 15
     
@@ -31,8 +31,8 @@ struct ChallengeInfoView: View {
     }
 }
 
-struct ChallengeInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChallengeInfoView()
-    }
-}
+//struct ChallengeInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChallengeInfoView()
+//    }
+//}

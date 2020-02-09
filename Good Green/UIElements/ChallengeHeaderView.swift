@@ -25,7 +25,7 @@ struct ChallengeHeaderView: View {
                 .offset(x: -6, y: 0)
                 .overlay(
             challenge.iconImage.resizable().frame(width: iconSize, height: iconSize*10/9).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15))))
-            ChallengeInfoView()
+			ChallengeInfoView(challenge: self.challenge)
         }
     }
 }
