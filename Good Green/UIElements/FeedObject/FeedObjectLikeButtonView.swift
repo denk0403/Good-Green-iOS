@@ -10,6 +10,10 @@ import SwiftUI
 
 struct FeedObjectLikeButtonView: View {
     @State private var plantImg = "plant-selected"
+	
+	let feedObject: FeedObject
+	
+	@Environment(\.appService) var appService: AppService
     
     var body: some View {
         VStack {
@@ -32,10 +36,10 @@ struct FeedObjectLikeButtonView: View {
     
      func determineLikeSprite() -> String {
         if(plantImg == "plant-unselected") {
-            print("selected")
+			appService.likePost(feedID: self.feedObject.id, callback: {print($0)})
             return "plant-selected"
         } else if (plantImg == "plant-selected") {
-            print("deselected")
+            appService.unlikePost(feedID: self.feedObject.id, callback: {print($0)})
             return "plant-unselected"
         } else {
             print("selected")
@@ -57,6 +61,6 @@ struct FeedObjectLikeButtonView: View {
 
 struct FeedObjectLikeButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedObjectLikeButtonView()
+		FeedObjectLikeButtonView(feedObject: Constants.fo1)
     }
 }

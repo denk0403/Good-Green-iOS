@@ -34,7 +34,7 @@ struct FeedObjectView: View {
                         // challenge description
                         FeedObjectBodyView(feedObject: feedObject)
                         
-                        FeedObjectLikeButtonView()
+                        FeedObjectLikeButtonView(feedObject: feedObject)
                     }
                 FeedObjectUserOverlayView(feedObject: feedObject)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 135, trailing: 70))

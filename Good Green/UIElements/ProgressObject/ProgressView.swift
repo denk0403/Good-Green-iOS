@@ -25,7 +25,7 @@ struct ProgressView: View {
                         // challenge description
                         ProgressBodyView(progress: progress)
                         
-                        FeedObjectLikeButtonView()
+					FeedObjectLikeButtonView(feedObject: Constants.fo1)
                     }
                         }
         }.frame(width: 320, height: 125)

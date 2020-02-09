@@ -14,30 +14,45 @@ struct ChallengeControlView: View {
     let buttonHeight: CGFloat = 30
     let buttonTextSize: CGFloat = 13
     let buttonCornerRadius: CGFloat = 10
+	@Environment(\.appService) var appService: AppService
+	
+	@State private var shouldShow = false
+	@State private var textToShow = "hello"
     
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
-                    print("Your mom")
+					self.appService.completeChallenge(challengeID: self.challenge.id) {
+						self.shouldShow = true
+						self.textToShow = $0 ? "Congrats on completing your game" : "An error occurred"
+					}
                 }) {
                     RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(Text("Mark as complete today").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
                     .foregroundColor(Color(Constants.ufoGreen))
                 }
                 Button(action: {
-                    print("Your mom")
+						self.appService.completeChallenge(challengeID: self.challenge.id) {
+							self.shouldShow = true
+							self.textToShow = $0 ? "Congrats on completing your game" : "An error occurred"
+						}
                 }) {
                     RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(Text("Mark as complete this week").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
                         .foregroundColor(Color(Constants.ufoGreen))
                 }
             }
             Button(action: {
-                print("Your mom")
+					self.appService.dropChallenge(challengeID: self.challenge.id) {
+						self.shouldShow = true
+						self.textToShow = $0 ? "You have been dropped from the challenge" : "An error occurred"
+					}
             }) {
                 RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(Text("End this challenge ").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize))).foregroundColor(Color(Constants.coral))
             }
-        }
-    }
+		}.alert(isPresented: self.$shouldShow) {
+			Alert(title: Text(self.textToShow))
+		}
+	}
 }
 
 struct ChallengeControlView_Previews: PreviewProvider {

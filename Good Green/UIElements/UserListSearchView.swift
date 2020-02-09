@@ -16,7 +16,10 @@ struct UserListSearchView: View {
                 ForEach(users, id: \.id) { user in
                     HStack {
                         Spacer()
-                        UserCardView(user: user)
+						NavigationLink(destination: OtherUsersFullView(user: user)){
+							UserCardView(user: user)
+						}
+                        
                         Spacer()
                     }
             }

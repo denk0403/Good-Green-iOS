@@ -42,8 +42,9 @@ class AppServiceRealData: AppService {
 	func makePostApiRequest<T: Decodable>(url: String, extraArguments: [String: String] = [:], completion: @escaping (T?) -> ()) {
 		var request = URLRequest(url: URL(string: "\(baseURL)\(url)")!)
 		request.httpMethod = "POST"
-		extraArguments.forEach({request.setValue($0.key, forHTTPHeaderField: $0.value)})
-		request.setValue(self.authToken!, forHTTPHeaderField: "auth")
+		var newArguments = extraArguments
+		newArguments["auth"] = authToken!
+		request.httpBody = newArguments.map({"\($0)=\($1)"}).joined(separator: "&").data(using: .utf8)
 		URLSession.shared.dataTask(with: request) {(data, _, error) in
 			guard error == nil else {
 				completion(nil)
@@ -62,8 +63,9 @@ class AppServiceRealData: AppService {
 	func makePostApiRequestBool(url: String, extraArguments: [String: String] = [:], completion: @escaping (Bool) -> ()) {
 		var request = URLRequest(url: URL(string: "\(baseURL)\(url)")!)
 		request.httpMethod = "POST"
-		extraArguments.forEach({request.setValue($0.key, forHTTPHeaderField: $0.value)})
-		request.setValue(self.authToken!, forHTTPHeaderField: "auth")
+		var newArguments = extraArguments
+		newArguments["auth"] = authToken!
+		request.httpBody = newArguments.map({"\($0)=\($1)"}).joined(separator: "&").data(using: .utf8)
 		URLSession.shared.dataTask(with: request) {(data, _, error) in
 			completion(error != nil && (try? JSONSerialization.jsonObject(with: data ?? Data(), options: .allowFragments) as? [String: Any])?["error"] != nil)
 		}.resume()
@@ -186,7 +188,10 @@ class AppServiceRealData: AppService {
 	
 	func getUserArray(_ arr: [String], followers: Bool = true, callback: @escaping ([User]?) -> ()) {
 		let myGroup = DispatchGroup()
-		
+		if arr.isEmpty {
+			callback([])
+			return
+		}
 		var users: [User] = []
 		
 		for user in arr {
@@ -221,6 +226,10 @@ class AppServiceRealData: AppService {
 				return
 			}
 			let dispatchGroup = DispatchGroup()
+			if actualObjects.isEmpty {
+				callback([])
+				return
+			}
 			var objects = [FeedObject]()
 			for object in actualObjects {
 				dispatchGroup.enter()
@@ -362,12 +371,17 @@ class AppServiceRealData: AppService {
 	}
 	
 	func getUserFeed(userID: String, callback: @escaping ([FeedObject]?) -> ()) {
-		self.makeGetApiRequest(url: "/feed/user/\(userID)") {(fdto: [FeedObjectDTO]?) in
+		self.makeGetApiRequest(url: "/user/\(userID)/feed") {(fdto: [FeedObjectDTO]?) in
 			guard let actualObjects = fdto else {
 				callback(nil)
 				return
 			}
+			if actualObjects.isEmpty {
+				callback([])
+				return
+			}
 			let dispatchGroup = DispatchGroup()
+			
 			var objects = [FeedObject]()
 			for object in actualObjects {
 				dispatchGroup.enter()

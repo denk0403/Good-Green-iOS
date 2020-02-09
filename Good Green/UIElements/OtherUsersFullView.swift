@@ -27,7 +27,7 @@ struct OtherUsersFullView: View {
 				OtherUsersView(user: self.startingUser, feedObjects: self.feed)
 			}.onAppear {
 				self.appService.getUser(userID: self.user.id) {user in
-					self.appService.getFeed(offset: 0) {feed in
+					self.appService.getUserFeed(userID: self.user.id) {feed in
 						guard let myFeed = feed, let myUser = user else {
 							self.isError = true
 							return
