@@ -9,13 +9,22 @@
 import SwiftUI
 
 struct SearchView: View {
+    @State private var searchingType: SearchType = .users
     var body: some View {
         ZStack {
-            Color(Constants.whiteSmoke)
-            SearchBarView()
-            .offset(y: -340)
+            Color(Constants.whiteSmoke).edgesIgnoringSafeArea(.all)
+            VStack {
+                Spacer()
+                SearchBarView()
+                Spacer()
+                Spacer()
+                SelectSearchTypeView(type: self.$searchingType)
+                Spacer()
+                Spacer()
+                UserListSearchView(users: [Constants.user1, Constants.user2, Constants.user3, Constants.user4])
+            }
+            
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

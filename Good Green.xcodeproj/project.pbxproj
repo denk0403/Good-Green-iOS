@@ -31,6 +31,8 @@
 		46E297A923EF7E7A006849C8 /* ChallengeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297A823EF7E7A006849C8 /* ChallengeControlView.swift */; };
 		46E297AB23EF8E64006849C8 /* ChallengeDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297AA23EF8E64006849C8 /* ChallengeDescriptionView.swift */; };
 		46E297AF23EF962A006849C8 /* ChallengePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297AE23EF962A006849C8 /* ChallengePageView.swift */; };
+		46E297B123EFACA5006849C8 /* UserListSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B023EFACA5006849C8 /* UserListSearchView.swift */; };
+		46E297B523EFB6D8006849C8 /* SelectSearchTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */; };
 		D3D5BB5223EF4A8E0017715B /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB5123EF4A8E0017715B /* FeedView.swift */; };
 		D3D5BB5423EF50D10017715B /* UserCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB5323EF50D10017715B /* UserCardView.swift */; };
 		D3D5BB5623EF67800017715B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB5523EF67800017715B /* HomeView.swift */; };
@@ -99,6 +101,8 @@
 		46E297A823EF7E7A006849C8 /* ChallengeControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeControlView.swift; sourceTree = "<group>"; };
 		46E297AA23EF8E64006849C8 /* ChallengeDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDescriptionView.swift; sourceTree = "<group>"; };
 		46E297AE23EF962A006849C8 /* ChallengePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengePageView.swift; sourceTree = "<group>"; };
+		46E297B023EFACA5006849C8 /* UserListSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListSearchView.swift; sourceTree = "<group>"; };
+		46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSearchTypeView.swift; sourceTree = "<group>"; };
 		D3D5BB5123EF4A8E0017715B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D3D5BB5323EF50D10017715B /* UserCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardView.swift; sourceTree = "<group>"; };
 		D3D5BB5523EF67800017715B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 				46E297A823EF7E7A006849C8 /* ChallengeControlView.swift */,
 				46E297AA23EF8E64006849C8 /* ChallengeDescriptionView.swift */,
 				46E297AE23EF962A006849C8 /* ChallengePageView.swift */,
+				46E297B023EFACA5006849C8 /* UserListSearchView.swift */,
+				46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				D3D5BB6723EF966F0017715B /* FeedObjectChallengeHeadingView.swift in Sources */,
 				46E2978823EE9263006849C8 /* AppService.swift in Sources */,
 				46E2979E23EF4FC0006849C8 /* FeedObjectMocks.swift in Sources */,
+				46E297B123EFACA5006849C8 /* UserListSearchView.swift in Sources */,
 				46E2978F23EF255F006849C8 /* UserMocks.swift in Sources */,
 				D3D5BB5A23EF783A0017715B /* SearchBarView.swift in Sources */,
 				D3D5BB5423EF50D10017715B /* UserCardView.swift in Sources */,
@@ -452,6 +459,7 @@
 				46E297AB23EF8E64006849C8 /* ChallengeDescriptionView.swift in Sources */,
 				46E2975823EE51E6006849C8 /* ContentView.swift in Sources */,
 				D3D5BB5823EF77990017715B /* SearchView.swift in Sources */,
+				46E297B523EFB6D8006849C8 /* SelectSearchTypeView.swift in Sources */,
 				46E2978A23EE952C006849C8 /* Progress.swift in Sources */,
 				D3D5BB5C23EF7CCE0017715B /* HomeHeaderView.swift in Sources */,
 				D3D5BB5223EF4A8E0017715B /* FeedView.swift in Sources */,
