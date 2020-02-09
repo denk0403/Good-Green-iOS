@@ -102,8 +102,17 @@ class AppServiceRealData: AppService {
 			}
 			semaphore.wait()
 		}
-		
-		return Challenge(id: actualChallenge.id, name: actualChallenge.name, iconImage: Image(actualChallenge.iconImage), vibe: actualChallenge.vibe, description: actualChallenge.description, threshold: actualChallenge.threshold, challengeUsers: users)
+        
+        var user: User?
+        self.getUser(userID: actualChallenge.creator) {innerUser in
+            user = innerUser
+            semaphore.signal()
+        }
+        semaphore.wait()
+        if let actualUser = user {
+            return Challenge(id: actualChallenge.id, name: actualChallenge.name, iconImage: Image(actualChallenge.iconImage), vibe: actualChallenge.vibe, description: actualChallenge.description, threshold: actualChallenge.threshold, creator: actualUser, challengeUsers: users)
+        }
+        return nil
 	}
 	
 	func getUserChallenges(with url: String, callback: @escaping ([Progress]?) -> Void) {
@@ -292,6 +301,10 @@ class AppServiceRealData: AppService {
 	func unfollowUser(userID: String, callback: @escaping (Bool) -> Void) {
 		self.makePostApiRequestBool(url: "/user/\(userID)/unfollow", completion: callback)
 	}
+    
+    func searchChallenges(query: String, callback: @escaping ([Challenge]?) -> Void) {
+        callback([Constants.challenge1, Constants.challenge2, Constants.challenge3, Constants.challenge4 ])
+    }
 	
 	
 }

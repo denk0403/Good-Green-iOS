@@ -76,6 +76,8 @@ struct ChallengeDTO: Codable {
     
     let threshold: Int
     
+    let creator: String
+    
     var challengeUsers: [String]
 	
 	enum CodingKeys: String, CodingKey {
@@ -86,6 +88,6 @@ struct ChallengeDTO: Codable {
 		case description
 		case threshold
 		case challengeUsers = "users"
-		
+        case creator
 	}
 }
