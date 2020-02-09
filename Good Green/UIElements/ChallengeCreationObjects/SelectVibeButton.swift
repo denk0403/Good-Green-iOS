@@ -60,6 +60,7 @@ struct SelectVibeButton: View {
             }
             
             if (shouldShowVibePicker) {
+                VStack {
                 NavigationView {
                     Form {
                         Picker(selection: $selectedVibe, label: Text("Vibe")) {
@@ -68,8 +69,9 @@ struct SelectVibeButton: View {
                             }
                     }
                     .pickerStyle(WheelPickerStyle())
-                }
-                }
+                        }
+                    }
+                }.padding(.bottom, 20)
             }
 
             

@@ -71,6 +71,7 @@
 		D3FEADE423F037730009DDDB /* SetChallengeDescrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FEADE323F037730009DDDB /* SetChallengeDescrView.swift */; };
 		D3FEADE623F03BB10009DDDB /* ChallengeCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FEADE523F03BB10009DDDB /* ChallengeCreationView.swift */; };
 		D3FEADE823F03F8E0009DDDB /* NewChallengeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FEADE723F03F8E0009DDDB /* NewChallengeButtonView.swift */; };
+		D3FEADEA23F043560009DDDB /* ChallengeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FEADE923F043560009DDDB /* ChallengeImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +163,7 @@
 		D3FEADE323F037730009DDDB /* SetChallengeDescrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetChallengeDescrView.swift; sourceTree = "<group>"; };
 		D3FEADE523F03BB10009DDDB /* ChallengeCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCreationView.swift; sourceTree = "<group>"; };
 		D3FEADE723F03F8E0009DDDB /* NewChallengeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChallengeButtonView.swift; sourceTree = "<group>"; };
+		D3FEADE923F043560009DDDB /* ChallengeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +336,7 @@
 				D3FEADE123F0310D0009DDDB /* ChallengeCreationHeaderView.swift */,
 				D3FEADE323F037730009DDDB /* SetChallengeDescrView.swift */,
 				D3FEADE523F03BB10009DDDB /* ChallengeCreationView.swift */,
+				D3FEADE923F043560009DDDB /* ChallengeImageView.swift */,
 			);
 			path = ChallengeCreationObjects;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				46E297A523EF75FE006849C8 /* ChallengeInfoView.swift in Sources */,
 				D3FEADE623F03BB10009DDDB /* ChallengeCreationView.swift in Sources */,
 				46E297A323EF6EC8006849C8 /* FeedListView.swift in Sources */,
+				D3FEADEA23F043560009DDDB /* ChallengeImageView.swift in Sources */,
 				46E297AB23EF8E64006849C8 /* ChallengeDescriptionView.swift in Sources */,
 				46E2975823EE51E6006849C8 /* ContentView.swift in Sources */,
 				D3D5BB5823EF77990017715B /* SearchView.swift in Sources */,
