@@ -9,19 +9,20 @@
 import SwiftUI
 
 struct ChallengeCreationHeaderView: View {
-   
+    @Binding var selectedVibe: Int
+    
     var body: some View {
         HStack {
             VStack {
-                SelectVibeButton()
+                SelectVibeButton(selectedVibe: self.$selectedVibe)
             }
         }
             
     }
 }
 
-struct ChallengeCreationHeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChallengeCreationHeaderView()
-    }
-}
+//struct ChallengeCreationHeaderView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChallengeCreationHeaderView()
+//    }
+//}

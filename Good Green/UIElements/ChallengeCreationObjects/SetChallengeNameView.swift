@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct SetChallengeNameView: View {
-    @State private var challengeName: String = ""
+    @Binding var challengeName: String
+    
     var body: some View {
         VStack {
             TextField("Enter Challenge Name...", text: $challengeName)
@@ -21,8 +22,8 @@ struct SetChallengeNameView: View {
     }
 }
 
-struct SetChallengeNameView_Previews: PreviewProvider {
-    static var previews: some View {
-        SetChallengeNameView()
-    }
-}
+//struct SetChallengeNameView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SetChallengeNameView()
+//    }
+//}
