@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ChallengeControlView: View {
     let challenge: Challenge;
+    
     let buttonWidth: CGFloat = 175
     let buttonHeight: CGFloat = 30
     let buttonTextSize: CGFloat = 13
@@ -18,6 +19,8 @@ struct ChallengeControlView: View {
 	
 	@State private var shouldShow = false
 	@State private var textToShow = "hello"
+    
+    @Binding var subscription: ChallengeSubscription
     
     var body: some View {
         VStack {
@@ -57,6 +60,8 @@ struct ChallengeControlView: View {
 
 struct ChallengeControlView_Previews: PreviewProvider {
     static var previews: some View {
-        ChallengeControlView(challenge: Constants.challenge1)
+        ChallengeControlView(challenge: Constants.challenge1, subscription: Binding(get: {
+            .inactive
+        }, set: {_ = $0})).environment(\.appService, AppServiceImpl())
     }
 }

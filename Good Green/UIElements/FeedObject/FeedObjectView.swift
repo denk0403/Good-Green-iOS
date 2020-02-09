@@ -27,7 +27,7 @@ struct FeedObjectView: View {
                 
                
                     VStack(alignment: .leading) {
-						NavigationLink(destination: ChallengePageView(challenge: self.feedObject.challenge)) {
+                        NavigationLink(destination: LoadChallengePageView(challengeId: self.feedObject.challenge.id)) {
                         FeedObjectChallengeHeadingView(feedObject: feedObject)
                             .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
                         }

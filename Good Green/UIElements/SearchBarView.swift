@@ -12,6 +12,8 @@ struct SearchBarView: View {
      let cornerR: CGFloat = 12
     
     @Binding var search: String
+    @Binding var searchType: SearchType
+    @Environment(\.appService) var appService: AppService
     
     var body: some View {
             ZStack {
@@ -21,7 +23,7 @@ struct SearchBarView: View {
                    .overlay(
                        RoundedRectangle(cornerRadius: cornerR, style: .continuous)
                         .stroke(Color(Constants.gunmetal), lineWidth: 1))
-                TextField("Search a user", text: self.$search).padding([.leading, .trailing])
+                TextField(self.searchType == .users ? "Search a user" : "Search a challenge", text: self.$search).padding([.leading, .trailing])
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(Color.black)
                     .padding(EdgeInsets(top: 0, leading: 290, bottom: 0, trailing: 0))
@@ -37,6 +39,9 @@ struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
         SearchBarView(search: Binding(get: {
             "Hello"
+        }, set: {_ = $0}), searchType: Binding(get: {
+            .challenges
         }, set: {_ = $0})
-        )}
+        ).environment(\.appService, AppServiceImpl())
+    }
 }
