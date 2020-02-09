@@ -29,27 +29,27 @@ struct LoadChallengePageView: View {
                 Text("Click here to retry")
             })
         } else {
-            return AnyView(LoadingView(isLoading: self.challenge.id == "-1" || self.subscription == .waiting) {
+            return AnyView(LoadingView(isLoading: self.subscription == .waiting) {
                 ChallengePageView(challenge: self.challenge, subscription: self.$subscription)
             }.onAppear {
-                self.appService.getChallenge(challengeID: self.challenge.id, callback: {
+                self.appService.getChallenge(challengeID: self.challengeId, callback: {
                     if let challenge = $0 {
                         self.challenge = challenge
+                        print(self.challenge)
+                        self.appService.getUserActiveChallenges(callback: {
+                            if let progresses = $0 {
+                                self.subscription = progresses.contains(where: {
+                                    $0.id == self.challenge.id
+                                    }) ? .active : .inactive
+                            } else {
+                                self.isError = true;
+                            }
+                        })
                     } else {
                         self.isError = true;
                     }
                 })
                 
-                self.appService.getUserActiveChallenges(callback: {
-                    if let progresses = $0 {
-                        self.subscription = progresses.contains(where: {
-                            $0.id == self.challenge.id
-                            }) ? .active : .inactive
-                    } else {
-                        self.isError = true;
-                        self.subscription = .waiting
-                    }
-                })
             }
             )
         }
