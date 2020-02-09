@@ -11,7 +11,8 @@ import SwiftUI
 
 protocol AppService {
     func getChallenge(challengeID: String, callback: @escaping (Challenge?) -> Void)
-    func getUserChallenges(callback: @escaping ([Progress]?) -> Void )
+    func getUserActiveChallenges(callback: @escaping ([Progress]?) -> Void )
+	func getUserPreviousChallenges(callback: @escaping ([Progress]?) -> Void)
     func getUser(userID: String, callback: @escaping (User?) -> Void)
     func authUser(username: String, password: String, callback: @escaping (User?) -> Void)
     func getFeed(offset: Int, callback: @escaping ([FeedObject]?) -> Void)

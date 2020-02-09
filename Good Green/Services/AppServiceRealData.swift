@@ -106,8 +106,8 @@ class AppServiceRealData: AppService {
 		return Challenge(id: actualChallenge.id, name: actualChallenge.name, iconImage: Image(actualChallenge.iconImage), vibe: actualChallenge.vibe, description: actualChallenge.description, threshold: actualChallenge.threshold, challengeUsers: users)
 	}
 	
-	func getUserChallenges(callback: @escaping ([Progress]?) -> Void) {
-		self.makeGetApiRequest(url: "/challenges") {(progress: [ProgressDTO]?) in
+	func getUserChallenges(with url: String, callback: @escaping ([Progress]?) -> Void) {
+		self.makeGetApiRequest(url: url) {(progress: [ProgressDTO]?) in
 			guard let actualProgress = progress else {
 				callback(nil)
 				return
@@ -130,6 +130,12 @@ class AppServiceRealData: AppService {
 			}
 			callback(progresses)
 		}
+	}
+	func getUserActiveChallenges(callback: @escaping ([Progress]?) -> Void ) {
+		self.getUserChallenges(with: "/active/challenge", callback: callback)
+	}
+	func getUserPreviousChallenges(callback: @escaping ([Progress]?) -> Void) {
+		self.getUserChallenges(with: "/previous/challenge", callback: callback)
 	}
 	
 	func getUser(userID: String, callback: @escaping (User?) -> Void) {
