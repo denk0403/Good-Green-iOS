@@ -11,6 +11,8 @@ import SwiftUI
 
 class AppServiceRealData: AppService {
 	private var authToken: String?
+    
+    var currentUser: User? = nil
 	
 	private var challenges: [Challenge] = []
 	private var progresses: [Progress] = []
@@ -209,7 +211,10 @@ class AppServiceRealData: AppService {
 				return
 			}
 			self.authToken = authentication.key
-			self.parse(user: authentication.value, getFollowers: true, completion: callback)
+            self.parse(user: authentication.value, getFollowers: true) {
+                self.currentUser = $0
+                callback($0)
+            }
 		}
 	}
 	
@@ -315,7 +320,10 @@ class AppServiceRealData: AppService {
 				return
 			}
 			self.authToken = authentication.key
-			self.parse(user: authentication.value, getFollowers: true, completion: callback)
+            self.parse(user: authentication.value, getFollowers: true) {
+                self.currentUser = $0
+                callback($0)
+            }
 		}
 	}
 	

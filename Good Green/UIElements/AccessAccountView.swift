@@ -97,7 +97,13 @@ struct AccessAccountView: View {
                             }
                             
                             Button(action: {
-                                
+                                self.selected == .login
+                                    ? self.appService.authUser(username: self.username, password: self.password, callback: {
+                                    _ = $0
+                                    })
+                                    : self.appService.createUser(username: self.password, password: self.password, callback: {
+                                        _ = $0
+                                    })
                             }) {
                                 RoundedRectangle(cornerRadius: buttonCornerRadius)
                                     .frame(width: buttonWidth, height: buttonHeight)

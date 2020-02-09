@@ -44,6 +44,6 @@ struct OtherUsersFullView: View {
 
 struct OtherUsersFullView_Previews: PreviewProvider {
     static var previews: some View {
-		OtherUsersFullView(user: Constants.user1)
+		OtherUsersFullView(user: Constants.user1).environment(\.appService, AppServiceImpl())
     }
 }

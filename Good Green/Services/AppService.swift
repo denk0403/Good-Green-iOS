@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 
 protocol AppService {
+    var currentUser: User? {get}
     func getChallenge(challengeID: String, callback: @escaping (Challenge?) -> Void)
     func getUserActiveChallenges(callback: @escaping ([Progress]?) -> Void )
 	func getUserPreviousChallenges(callback: @escaping ([Progress]?) -> Void)
