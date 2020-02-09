@@ -243,7 +243,7 @@ class AppServiceRealData: AppService {
 	}
 	
 	func getUsers(query: String, callback: @escaping ([User]?) -> Void) {
-		self.makeGetApiRequest(url: "search/user", extraArguments: "&q=\(query)") { (users: [UserDTO]?) in
+		self.makeGetApiRequest(url: "/search/user", extraArguments: "&q=\(query)") { (users: [UserDTO]?) in
 			guard let userArray = users else {
 				callback(nil)
 				return
@@ -303,10 +303,10 @@ class AppServiceRealData: AppService {
 	}
     
     func searchChallenges(query: String, callback: @escaping ([Challenge]?) -> Void) {
-        callback([Constants.challenge1, Constants.challenge2, Constants.challenge3, Constants.challenge4 ])
+		self.makeGetApiRequest(url: "/search/challenge") {(challenges: [ChallengeDTO]?) in
+			callback(challenges?.compactMap(self.parse(challengeDTO:)))
+		}
     }
-	
-	
 }
 
 struct Authentication: Codable {

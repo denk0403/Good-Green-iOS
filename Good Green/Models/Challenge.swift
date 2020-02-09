@@ -81,7 +81,7 @@ struct ChallengeDTO: Codable {
     var challengeUsers: [String]
 	
 	enum CodingKeys: String, CodingKey {
-		case id
+		case id = "uuid"
 		case name
 		case iconImage = "icon"
 		case vibe
