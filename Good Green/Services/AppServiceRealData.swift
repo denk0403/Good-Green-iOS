@@ -123,24 +123,23 @@ class AppServiceRealData: AppService {
 				callback(nil)
 				return
 			}
-			let semaphore = DispatchSemaphore(value: 1)
+			let group = DispatchGroup()
 			
 			var progresses = [Progress]()
-			var hasError = false
-			for each in actualProgress where !hasError{
+			for each in actualProgress{
 				self.getChallenge(challengeID: each.challenge) {
 					guard let challenge = $0 else {
-						callback(nil)
-						hasError = true
-						semaphore.signal()
+						group.leave()
 						return
 					}
 					progresses.append(Progress(value: each.value, threshold: each.threshold,challenge: challenge))
-					semaphore.signal()
+					group.leave()
 				}
-				semaphore.wait()
 			}
-			callback(progresses)
+			group.notify(queue: .main) {
+				callback(progresses.count == actualProgress.count ? progresses : nil)
+			}
+			
 		}
 	}
 	func getUserActiveChallenges(callback: @escaping ([Progress]?) -> Void ) {
@@ -337,19 +336,34 @@ class AppServiceRealData: AppService {
 	}
     
     func searchChallenges(query: String, callback: @escaping ([Challenge]?) -> Void) {
-		self.makeGetApiRequest(url: "/search/challenge") {(challenges: [ChallengeDTO]?) in
-			let challengePublishers = challenges?.map(self.getChallengePublisher(dto:))
-			if let pubs = challengePublishers {
-				pubs.dropFirst().reduce(pubs.first!, {
-					return $0.merge(with: $1).eraseToAnyPublisher()
-				}).collect(pubs.count)
-				.sink(receiveValue: {
-					callback($0.compactMap({tr in tr}))
-				}).store(in: &self.cancellables)
-			} else {
+		self.makeGetApiRequest(url: "/search/challenge", extraArguments: "&q=\(query)") {(challenges: [ChallengeDTO]?) in
+			let operationQueue = DispatchGroup()
+			
+			guard let chall = challenges else {
 				callback(nil)
+				return
 			}
 			
+			if chall.isEmpty {
+				callback([])
+				return
+			}
+			
+			var chllenges = [Challenge]()
+			
+			for challenge in chall {
+				operationQueue.enter()
+				
+				self.parse(challengeDTO: challenge) {
+					if let ch = $0 {
+						chllenges.append(ch)
+					}
+					operationQueue.leave()
+				}
+			}
+			operationQueue.notify(queue: .main) {
+				callback(chllenges.count == chall.count ? chllenges : nil)
+			}
 		}
     }
 	
