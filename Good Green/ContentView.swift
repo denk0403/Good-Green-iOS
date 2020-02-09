@@ -43,7 +43,7 @@ struct ContentView: View {
                 }
                 .tag(1)
         
-			HomeView()
+            HomeView(user: Constants.user1)
                 .tabItem{
                     VStack {
                         Image(systemName: "house")

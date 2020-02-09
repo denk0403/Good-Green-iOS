@@ -16,18 +16,24 @@ struct HomeInfoView: View {
     var body: some View {
         VStack {
             Text(user.name).font(.custom("Helvetica Neue", size: nameSize))
+                .foregroundColor(Color(Constants.gunmetal))
             HStack {
                 VStack {
             Text(String(user.followers.count)).font(.custom("Helvetica Neue", size: detailsSize))
             Text("Followers").font(.custom("Helvetica Neue", size: detailsSize))
+                    .foregroundColor(Color(Constants.gunmetal))
             }
             VStack {
             Text(String(user.following.count)).font(.custom("Helvetica Neue", size: detailsSize))
+                .foregroundColor(Color(Constants.gunmetal))
                 Text("Following").font(.custom("Helvetica Neue", size: detailsSize))
+                .foregroundColor(Color(Constants.gunmetal))
                 }
             VStack {
             Text(String(user.activeChallenges.count)).font(.custom("Helvetica Neue", size: detailsSize))
+                .foregroundColor(Color(Constants.gunmetal))
                 Text("Challenges").font(.custom("Helvetica Neue", size: detailsSize))
+                .foregroundColor(Color(Constants.gunmetal))
                 }
             }
         }

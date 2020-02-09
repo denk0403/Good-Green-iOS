@@ -1,5 +1,5 @@
 //
-//  CompletedChallengesButtonView.swift
+//  ActiveChallengesButtonView.swift
 //  Good Green
 //
 //  Created by Levi Kaplan on 2/8/20.
@@ -8,31 +8,29 @@
 
 import SwiftUI
 
-struct CompletedChallengesButtonView: View {
-     let cornerR: CGFloat = 12
+struct ActiveChallengesButtonView: View {
+    
+    let cornerR: CGFloat = 12
+    
     var body: some View {
-        Button(action: {
-            
-        }) {
         ZStack {
            
             RoundedRectangle(cornerRadius: cornerR, style: .continuous)
-                .fill(Color(Constants.whiteSmoke))
+//                .fill(Color(Constants.whiteSmoke))
                 .frame(width: 98, height: 24)
                .overlay(
                    RoundedRectangle(cornerRadius: cornerR, style: .continuous)
                     .stroke(Color(Constants.gunmetal), lineWidth: 1))
-             Text("Completed Challenges")
-                .font(.custom("Helvetica Nueue", size: 9))
+             Text("Active Challenges")
+                .font(.custom("Helvetica Nueue", size: 11))
                 .foregroundColor(Color(Constants.gunmetal))
             }
         .frame(width: 319, height: 32.34)
-        }
     }
 }
 
-struct CompletedChallengesButtonView_Previews: PreviewProvider {
+struct ActiveChallengesButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        CompletedChallengesButtonView()
+        ActiveChallengesButtonView()
     }
 }
