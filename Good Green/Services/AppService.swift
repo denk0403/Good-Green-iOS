@@ -27,4 +27,6 @@ protocol AppService {
     func followUser(userID: String, callback: @escaping (Bool) -> Void)
     func unfollowUser(userID: String, callback: @escaping (Bool) -> Void)
     func searchChallenges(query: String, callback: @escaping ([Challenge]?) -> Void)
+	func createUser(username: String, password: String, callback: @escaping (User?) -> ())
+	func getUserFeed(userID: String, callback: @escaping ([FeedObject]?) -> ())
 }
