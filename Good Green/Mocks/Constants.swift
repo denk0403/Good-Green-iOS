@@ -15,4 +15,6 @@ enum Constants {
     static let mint = UIColor(hex: "#4eb285ff")!
     static let gunmetal = UIColor(hex: "#2d334fff")!
     static let coral = UIColor(hex: "#ff7f61ff")!
+    
+     static let cornerR: CGFloat = 12
 }

@@ -10,7 +10,25 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+       //let user: User = Constants.user1
+        ZStack {
+            Color(Constants.whiteSmoke)
+            VStack {
+               // HomeHeaderView()
+                HStack {
+                    ActiveChallengesButtonView()
+                        .padding(EdgeInsets(top: 0, leading: 190, bottom: 0, trailing: 0))
+                        .frame(width: 98, height: 24)
+                    CompletedChallengesButtonView()
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 600, trailing: 0))
+            }
+        }.edgesIgnoringSafeArea(.all)
+        
+//        List {
+//            ForEach(user.activeChallenges, id: \.id) { feedObject in
+//                FeedObjectView(feedObject: feedObject)
+//            }
     }
 }
 

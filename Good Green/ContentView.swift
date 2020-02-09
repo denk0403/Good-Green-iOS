@@ -9,15 +9,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @State private var selection = 0
     init() {
         UITabBar.appearance().backgroundColor = Constants.whiteSmoke
+        UINavigationBar.appearance().backgroundColor = Constants.whiteSmoke
         
+               UINavigationBar.appearance().largeTitleTextAttributes = [
+                .foregroundColor: Constants.gunmetal,
+             .font : UIFont(name:"Helvetica Neue", size: 40)!]
     }
  
     var body: some View {
+        NavigationView {
+            
         TabView(selection: $selection) {
-            Text("Feed")
+            FeedView()
                 .font(.title)
                 .tabItem {
                     VStack {
@@ -26,8 +33,8 @@ struct ContentView: View {
                     }
                 }
                 .tag(0)
-            Text("Second View")
-                .font(.title)
+            
+            SearchView()
                 .tabItem {
                     VStack {
                         Image(systemName: "magnifyingglass")
@@ -36,8 +43,7 @@ struct ContentView: View {
                 }
                 .tag(1)
         
-            Text("Third View")
-                .font(.title)
+            HomeView()
                 .tabItem{
                     VStack {
                         Image(systemName: "house")
@@ -46,6 +52,8 @@ struct ContentView: View {
                 .tag(2)
             }
         }
+        .navigationBarTitle("GoodGreen")
+    }
     }
 }
 
