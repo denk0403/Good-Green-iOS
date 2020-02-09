@@ -33,12 +33,18 @@ struct HomeActiveComplChallView: View {
                     .fixedSize()
                 }
             Spacer()
+            NavigationLink(destination: ChallengeCreationView()) {
+                 NewChallengeButtonView()
+            }
+            Spacer()
         }
     }
 }
 
 struct HomeActiveComplChallView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeActiveComplChallView(type: Binding(get: {return .active}, set: {_ in}))
+        NavigationView {
+            HomeActiveComplChallView(type: Binding(get: {return .active}, set: {_ in}))
+        }
     }
 }

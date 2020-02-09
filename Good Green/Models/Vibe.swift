@@ -11,6 +11,8 @@ import Foundation
 enum Vibe: String, Codable {
     case water = "Water", trash = "Trash", trees = "Trees", animals = "Animals", transportation = "Transportation", clothing = "clothing"
 	
+    static let allVibes: [String] = [water.rawValue, trash.rawValue, trees.rawValue, animals.rawValue, transportation.rawValue]
+    
 	func toString() -> String {
 		return self.rawValue
 	}

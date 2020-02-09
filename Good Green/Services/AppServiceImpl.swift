@@ -11,6 +11,8 @@ import SwiftUI
 
 class AppServiceImpl: AppService {
     
+    let currentUser: User? = Constants.user1
+    
     var userID: String?;
     
     init() {
@@ -30,7 +32,9 @@ class AppServiceImpl: AppService {
     }
     
     func getChallenge(challengeID: String, callback: @escaping (Challenge?) -> Void) {
-        callback(Constants.challenge1)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            callback(Constants.challenge1)
+        }
     }
     
     func getUserChallenges(callback: @escaping ([Progress]?) -> Void) {

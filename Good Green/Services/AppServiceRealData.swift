@@ -12,6 +12,8 @@ import Combine
 
 class AppServiceRealData: AppService {
 	private var authToken: String? = "9gYFzFWl1t+P+kd67HzCS5N1A1Lwj4BvvtGFi/C/sbk="
+    
+    var currentUser: User? = nil
 	
 	private var challenges: [Challenge] = []
 	private var progresses: [Progress] = []
@@ -168,7 +170,7 @@ class AppServiceRealData: AppService {
 	
 	func parse(user: UserDTO, getFollowers: Bool, completion: @escaping (User?) -> ()) {
 		if !getFollowers {
-			let doneUser = User(userImage: Image(user.userImage), id: user.id, name: user.name, bio: user.bio)
+			let doneUser = User(userImage: user.userImage, id: user.id, name: user.name, bio: user.bio)
 			self.users.append(doneUser)
 			completion(doneUser)
 			return
@@ -179,11 +181,10 @@ class AppServiceRealData: AppService {
 				completion(nil)
 				return
 			}
-			let finishedUser = User(userImage: Image(user.userImage), id: user.id, name: user.name, bio: user.bio, activeChallenges: [], previousChallenges: [], followers: [], following: users)
+			let finishedUser = User(userImage: user.userImage, id: user.id, name: user.name, bio: user.bio, activeChallenges: [], previousChallenges: [], followers: [], following: users)
 			self.users.append(finishedUser)
 			completion(finishedUser)
 		}
-		
 	}
 	
 	func getUserArray(_ arr: [String], followers: Bool = true, callback: @escaping ([User]?) -> ()) {
@@ -215,7 +216,10 @@ class AppServiceRealData: AppService {
 				return
 			}
 			self.authToken = authentication.key
-			self.parse(user: authentication.value, getFollowers: true, completion: callback)
+            self.parse(user: authentication.value, getFollowers: true) {
+                self.currentUser = $0
+                callback($0)
+            }
 		}
 	}
 	
@@ -366,7 +370,10 @@ class AppServiceRealData: AppService {
 				return
 			}
 			self.authToken = authentication.key
-			self.parse(user: authentication.value, getFollowers: true, completion: callback)
+            self.parse(user: authentication.value, getFollowers: true) {
+                self.currentUser = $0
+                callback($0)
+            }
 		}
 	}
 	

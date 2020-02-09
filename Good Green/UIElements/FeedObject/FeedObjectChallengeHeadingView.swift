@@ -14,7 +14,7 @@ struct FeedObjectChallengeHeadingView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "house.fill")
+            Image(systemName: feedObject.user.userImage)
                 .resizable()
                 .frame(width: 30, height: 30)
                 .clipShape(Circle())
@@ -26,8 +26,6 @@ struct FeedObjectChallengeHeadingView: View {
                 .foregroundColor(Color(Constants.gunmetal))
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
         }
-
-
     }
 }
 

@@ -31,6 +31,8 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
+        NavigationView {
         HomeView(user: Constants.user1)
+        }
     }
 }

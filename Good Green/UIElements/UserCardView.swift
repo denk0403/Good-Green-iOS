@@ -16,30 +16,25 @@ struct UserCardView: View {
     
     
     var body: some View {
-        ZStack {
+        NavigationLink(destination: OtherUsersFullView(user: user)) {
+        ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: cornerR, style: .continuous)
                 .fill(Color(Constants.mint))
                 .frame(width: 319, height: 32.34)
                .overlay(
                    RoundedRectangle(cornerRadius: cornerR, style: .continuous)
                     .stroke(Color(Constants.gunmetal), lineWidth: 1))
-            Button(action: {
-                
-            }) {
                 HStack {
-                    user.userImage
-                    .overlay(
-                        Circle().stroke(Color(Constants.gunmetal), lineWidth: 1)
+                    Image(systemName: user.userImage).resizable().overlay(Circle().stroke(Color(Constants.gunmetal), lineWidth: 1)
                             .frame(width: 20, height: 20)
-                    )
-                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
+                    ).frame(width: 13, height: 13).padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
                     Text(user.name)
                         .font(.custom("Helvetica Neue", size: 20))
                         .foregroundColor(Color(Constants.gunmetal))
                     Spacer()
                 }
-            }
             .frame(width: 319, height: 32.34)
+        }
         }
     }
 }
