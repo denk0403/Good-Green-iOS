@@ -13,6 +13,8 @@ enum Vibe: String, Codable {
 	
     static let allVibes: [String] = [water.rawValue, trash.rawValue, trees.rawValue, animals.rawValue, transportation.rawValue]
     
+    static let allVibesNotString: [Vibe] = [water, trash, trees, animals, transportation, clothing]
+    
 	func toString() -> String {
 		return self.rawValue
 	}
