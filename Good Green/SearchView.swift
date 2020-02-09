@@ -21,7 +21,8 @@ struct SearchView: View {
                 SelectSearchTypeView(type: self.$searchingType)
                 Spacer()
                 Spacer()
-                UserListSearchView(users: [Constants.user1, Constants.user2, Constants.user3, Constants.user4])
+                    searchingType == .users ? AnyView(UserListSearchView(users: [Constants.user1, Constants.user2, Constants.user3, Constants.user4])) : AnyView(ChallengeListSearchView(challenges: [Constants.challenge1, Constants.challenge2, Constants.challenge3, Constants.challenge4 ]))
+                
             }
             
         }

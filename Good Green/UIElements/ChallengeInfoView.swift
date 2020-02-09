@@ -16,6 +16,7 @@ struct ChallengeInfoView: View {
     var body: some View {
         VStack {
             Text(challenge.name).font(.custom("Helvetica Neue", size: nameSize))
+            Text("Created By: \(self.challenge.creator.name)").font(.custom("Helvetica Neue", size: detailsSize - 2)).padding(EdgeInsets(top: 2, leading: 20, bottom: 20, trailing: 20))
             HStack {
                 VStack {
                     Text(String(challenge.challengeUsers.count)).font(.custom("Helvetica Neue", size: detailsSize))

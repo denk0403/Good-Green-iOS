@@ -33,6 +33,8 @@
 		46E297AF23EF962A006849C8 /* ChallengePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297AE23EF962A006849C8 /* ChallengePageView.swift */; };
 		46E297B123EFACA5006849C8 /* UserListSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B023EFACA5006849C8 /* UserListSearchView.swift */; };
 		46E297B523EFB6D8006849C8 /* SelectSearchTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */; };
+		46E297B723EFBCA9006849C8 /* ChallengeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B623EFBCA9006849C8 /* ChallengeCardView.swift */; };
+		46E297B923EFCF8D006849C8 /* ChallengeListSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B823EFCF8D006849C8 /* ChallengeListSearchView.swift */; };
 		A045B32923EFAA1200411A27 /* OtherUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045B32823EFAA1200411A27 /* OtherUsersView.swift */; };
 		A045B32B23EFAC6500411A27 /* OtherUsersFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045B32A23EFAC6500411A27 /* OtherUsersFullView.swift */; };
 		D3D5BB5223EF4A8E0017715B /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB5123EF4A8E0017715B /* FeedView.swift */; };
@@ -105,6 +107,8 @@
 		46E297AE23EF962A006849C8 /* ChallengePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengePageView.swift; sourceTree = "<group>"; };
 		46E297B023EFACA5006849C8 /* UserListSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListSearchView.swift; sourceTree = "<group>"; };
 		46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSearchTypeView.swift; sourceTree = "<group>"; };
+		46E297B623EFBCA9006849C8 /* ChallengeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCardView.swift; sourceTree = "<group>"; };
+		46E297B823EFCF8D006849C8 /* ChallengeListSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeListSearchView.swift; sourceTree = "<group>"; };
 		A045B32823EFAA1200411A27 /* OtherUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersView.swift; sourceTree = "<group>"; };
 		A045B32A23EFAC6500411A27 /* OtherUsersFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersFullView.swift; sourceTree = "<group>"; };
 		D3D5BB5123EF4A8E0017715B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -296,6 +300,8 @@
 				46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */,
 				A045B32823EFAA1200411A27 /* OtherUsersView.swift */,
 				A045B32A23EFAC6500411A27 /* OtherUsersFullView.swift */,
+				46E297B623EFBCA9006849C8 /* ChallengeCardView.swift */,
+				46E297B823EFCF8D006849C8 /* ChallengeListSearchView.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -459,6 +465,7 @@
 				46E2979823EF3923006849C8 /* Utils.swift in Sources */,
 				D3D5BB5E23EF7CEC0017715B /* HomeInfoView.swift in Sources */,
 				D3FD7D1923EE7D2A0073D515 /* User.swift in Sources */,
+				46E297B723EFBCA9006849C8 /* ChallengeCardView.swift in Sources */,
 				D3FD7D1523EE7BBA0073D515 /* FeedObject.swift in Sources */,
 				A045B32923EFAA1200411A27 /* OtherUsersView.swift in Sources */,
 				46E297A523EF75FE006849C8 /* ChallengeInfoView.swift in Sources */,
@@ -466,6 +473,7 @@
 				46E297AB23EF8E64006849C8 /* ChallengeDescriptionView.swift in Sources */,
 				46E2975823EE51E6006849C8 /* ContentView.swift in Sources */,
 				D3D5BB5823EF77990017715B /* SearchView.swift in Sources */,
+				46E297B923EFCF8D006849C8 /* ChallengeListSearchView.swift in Sources */,
 				46E297B523EFB6D8006849C8 /* SelectSearchTypeView.swift in Sources */,
 				A045B32B23EFAC6500411A27 /* OtherUsersFullView.swift in Sources */,
 				46E2978A23EE952C006849C8 /* Progress.swift in Sources */,

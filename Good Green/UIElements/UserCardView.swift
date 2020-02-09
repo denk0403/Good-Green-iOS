@@ -12,13 +12,11 @@ struct UserCardView: View {
     
     let user: User
     
-      let cornerR: CGFloat = 12
+    let cornerR: CGFloat = 12
     
     
     var body: some View {
         ZStack {
-
-                
             RoundedRectangle(cornerRadius: cornerR, style: .continuous)
                 .fill(Color(Constants.mint))
                 .frame(width: 319, height: 32.34)
@@ -29,7 +27,7 @@ struct UserCardView: View {
                 
             }) {
                 HStack {
-                    Image(systemName: "person.fill")
+                    user.userImage
                     .overlay(
                         Circle().stroke(Color(Constants.gunmetal), lineWidth: 1)
                             .frame(width: 20, height: 20)

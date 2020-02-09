@@ -13,9 +13,9 @@ struct ChallengePageView: View {
     
     var body: some View {
         Rectangle().fill(Color(Constants.whiteSmoke)).edgesIgnoringSafeArea(.all).overlay(VStack {
-            ChallengeHeaderView(challenge: challenge)
+            ChallengeHeaderView(challenge: challenge).padding()
             ChallengeControlView(challenge: challenge)
-            ChallengeDescriptionView(challenge: challenge)
+            ChallengeDescriptionView(challenge: challenge).padding()
         })
     }
 }
