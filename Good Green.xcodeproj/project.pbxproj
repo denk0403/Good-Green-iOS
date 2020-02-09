@@ -35,6 +35,7 @@
 		46E297B523EFB6D8006849C8 /* SelectSearchTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */; };
 		46E297B723EFBCA9006849C8 /* ChallengeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B623EFBCA9006849C8 /* ChallengeCardView.swift */; };
 		46E297B923EFCF8D006849C8 /* ChallengeListSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B823EFCF8D006849C8 /* ChallengeListSearchView.swift */; };
+		46E297BB23EFF5E6006849C8 /* AccessAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297BA23EFF5E6006849C8 /* AccessAccountView.swift */; };
 		A045B32923EFAA1200411A27 /* OtherUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045B32823EFAA1200411A27 /* OtherUsersView.swift */; };
 		A045B32B23EFAC6500411A27 /* OtherUsersFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045B32A23EFAC6500411A27 /* OtherUsersFullView.swift */; };
 		A045B32D23EFB92100411A27 /* AppServiceRealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045B32C23EFB92100411A27 /* AppServiceRealData.swift */; };
@@ -110,6 +111,7 @@
 		46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSearchTypeView.swift; sourceTree = "<group>"; };
 		46E297B623EFBCA9006849C8 /* ChallengeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCardView.swift; sourceTree = "<group>"; };
 		46E297B823EFCF8D006849C8 /* ChallengeListSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeListSearchView.swift; sourceTree = "<group>"; };
+		46E297BA23EFF5E6006849C8 /* AccessAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessAccountView.swift; sourceTree = "<group>"; };
 		A045B32823EFAA1200411A27 /* OtherUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersView.swift; sourceTree = "<group>"; };
 		A045B32A23EFAC6500411A27 /* OtherUsersFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersFullView.swift; sourceTree = "<group>"; };
 		A045B32C23EFB92100411A27 /* AppServiceRealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceRealData.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				A045B32A23EFAC6500411A27 /* OtherUsersFullView.swift */,
 				46E297B623EFBCA9006849C8 /* ChallengeCardView.swift */,
 				46E297B823EFCF8D006849C8 /* ChallengeListSearchView.swift */,
+				46E297BA23EFF5E6006849C8 /* AccessAccountView.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				A045B32D23EFB92100411A27 /* AppServiceRealData.swift in Sources */,
 				D3D5BB6223EF81200017715B /* CompletedChallengesButtonView.swift in Sources */,
 				46E2979623EF378C006849C8 /* Constants.swift in Sources */,
+				46E297BB23EFF5E6006849C8 /* AccessAccountView.swift in Sources */,
 				46E297A923EF7E7A006849C8 /* ChallengeControlView.swift in Sources */,
 				46E2975623EE51E6006849C8 /* SceneDelegate.swift in Sources */,
 				D3D5BB6023EF7FE90017715B /* ActiveChallengesButtonView.swift in Sources */,
