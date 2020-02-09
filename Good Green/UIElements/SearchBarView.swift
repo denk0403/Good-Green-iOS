@@ -11,24 +11,25 @@ import SwiftUI
 struct SearchBarView: View {
      let cornerR: CGFloat = 12
     
+    @State private var search = ""
+    
     var body: some View {
-            Button(action: {
-                
-            }) {
             ZStack {
-               
                 RoundedRectangle(cornerRadius: cornerR, style: .continuous)
                     .fill(Color(Constants.whiteSmoke))
                     .frame(width: 319, height: 32.34)
                    .overlay(
                        RoundedRectangle(cornerRadius: cornerR, style: .continuous)
                         .stroke(Color(Constants.gunmetal), lineWidth: 1))
-                 Image(systemName: "magnifyingglass")
+                TextField("Search a user", text: self.$search).padding([.leading, .trailing])
+                Image(systemName: "magnifyingglass")
                     .foregroundColor(Color.black)
                     .padding(EdgeInsets(top: 0, leading: 290, bottom: 0, trailing: 0))
+                    .onTapGesture {
+                        print("Do some shit broo")
+                    }
                 }
             .frame(width: 319, height: 32.34)
-            }
     }
 }
 
