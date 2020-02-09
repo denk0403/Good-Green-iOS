@@ -1,16 +1,16 @@
 //
-//  FeedObjectChallengeHeadingView.swift
+//  ProgressChallengeHeadingView.swift
 //  Good Green
 //
-//  Created by Levi Kaplan on 2/8/20.
+//  Created by Levi Kaplan on 2/9/20.
 //  Copyright © 2020 Dennis Kats. All rights reserved.
 //
 
 import SwiftUI
 
-struct FeedObjectChallengeHeadingView: View {
-    
-     let feedObject: FeedObject
+struct ProgressChallengeHeadingView: View {
+        
+     let progress: Progress
     
     var body: some View {
         HStack {
@@ -21,7 +21,7 @@ struct FeedObjectChallengeHeadingView: View {
                 .overlay(
                     Circle().stroke(Color(Constants.gunmetal), lineWidth: 1))
                 .scaledToFit()
-            Text(feedObject.challenge.name)
+            Text(progress.challenge.name)
                 .font(.custom("Helvetica Neue", size: 18))
                 .foregroundColor(Color(Constants.gunmetal))
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
@@ -31,8 +31,8 @@ struct FeedObjectChallengeHeadingView: View {
     }
 }
 
-struct FeedObjectChallengeHeadingView_Previews: PreviewProvider {
+struct ProgressChallengeHeadingView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedObjectChallengeHeadingView(feedObject: Constants.fo1)
+        ProgressChallengeHeadingView(progress: Constants.progress1)
     }
 }

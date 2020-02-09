@@ -1,20 +1,19 @@
 //
-//  FeedObjectBodyView.swift
+//  ProgressBodyView.swift
 //  Good Green
 //
-//  Created by Levi Kaplan on 2/8/20.
+//  Created by Levi Kaplan on 2/9/20.
 //  Copyright © 2020 Dennis Kats. All rights reserved.
 //
 
 import SwiftUI
 
-struct FeedObjectBodyView: View {
-    
-    let feedObject: FeedObject
+struct ProgressBodyView: View {
+    let progress: Progress
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text(feedObject.challenge.description)
+            Text(progress.challenge.description)
                 .font(.custom("Helvetica Neue", size: 9))
             .foregroundColor(Color(Constants.gunmetal))
                 .multilineTextAlignment(.leading)
@@ -26,8 +25,8 @@ struct FeedObjectBodyView: View {
     }
 }
 
-struct FeedObjectBodyView_Previews: PreviewProvider {
+struct ProgressBodyView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedObjectBodyView(feedObject: Constants.fo3)
+        ProgressBodyView(progress: Constants.progress1)
     }
 }

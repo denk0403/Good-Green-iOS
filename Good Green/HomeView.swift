@@ -9,31 +9,28 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var activeType: ActivationType = .active
+    @State private var loading: Bool = true
+    
+    
+    let user: User;
+    
     var body: some View {
-       //let user: User = Constants.user1
         ZStack {
             Color(Constants.whiteSmoke)
+                .edgesIgnoringSafeArea(.all)
             VStack {
-               // HomeHeaderView()
-                HStack {
-                    ActiveChallengesButtonView()
-                        .padding(EdgeInsets(top: 0, leading: 190, bottom: 0, trailing: 0))
-                        .frame(width: 98, height: 24)
-                    CompletedChallengesButtonView()
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 600, trailing: 0))
+                HomeHeaderView(user: user)
+                HomeActiveComplChallView(type: self.$activeType)
+//                FeedListView(: user.activeChallenges)
+                ChallengesListView(progresses: self.activeType == .active ? user.activeChallenges : user.previousChallenges)
             }
-        }.edgesIgnoringSafeArea(.all)
-        
-//        List {
-//            ForEach(user.activeChallenges, id: \.id) { feedObject in
-//                FeedObjectView(feedObject: feedObject)
-//            }
-    }
+            }
+        }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(user: Constants.user1)
     }
 }

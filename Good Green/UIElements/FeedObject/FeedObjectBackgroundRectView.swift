@@ -13,7 +13,7 @@ struct FeedObjectBackgroundRectView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: Constants.cornerR, style: .continuous)
            .fill(Color(Constants.whiteSmoke))
-           .frame(width: 319, height: 124.34)
+           .frame(width: 319, height: 140)
            .overlay(
             RoundedRectangle(cornerRadius: Constants.cornerR, style: .continuous)
                    .stroke(Color(Constants.gunmetal), lineWidth: 1))

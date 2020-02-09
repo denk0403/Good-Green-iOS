@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct Progress {
+struct Progress: Identifiable {
+    var id: String {
+        return challenge.id
+    }
+    
 
     let value: Int
 	
