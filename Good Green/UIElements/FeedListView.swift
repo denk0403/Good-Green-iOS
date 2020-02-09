@@ -9,18 +9,23 @@
 import SwiftUI
 
 struct FeedListView: View {
-    let feedObjects = [Constants.fo1, Constants.fo2, Constants.fo3, Constants.fo1, Constants.fo1, Constants.fo2, Constants.fo3, Constants.fo1 ]
+	let feedObjects: [FeedObject]
     var body: some View {
-        List {
-            ForEach(feedObjects, id: \.id) { feedObject in
-                FeedObjectView(feedObject: feedObject)
-            }
-        }
+		List{
+			ForEach(feedObjects, id: \.id) { feedObject in
+				HStack {
+					Spacer()
+					FeedObjectView(feedObject: feedObject)
+					Spacer()
+				}
+			}
+		}.colorMultiply(Color(Constants.whiteSmoke))
+        
     }
 }
 
 struct FeedListView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedListView()
+        FeedListView(feedObjects: [Constants.fo1, Constants.fo2, Constants.fo3, Constants.fo1, Constants.fo1, Constants.fo2, Constants.fo3, Constants.fo1])
     }
 }
