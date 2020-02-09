@@ -9,7 +9,7 @@
 import Foundation
 
 extension Constants {
-    static var progress1 = Progress(value: 0, challenge: Constants.challenge1)
-    static var progress2 = Progress(value: 0, challenge: Constants.challenge2)
-    static var progress3 = Progress(value: 1, challenge: Constants.challenge3)
+	static var progress1 = Progress(value: 0, threshold: 1,challenge: Constants.challenge1)
+	static var progress2 = Progress(value: 0, threshold: 1, challenge: Constants.challenge2)
+	static var progress3 = Progress(value: 1, threshold: 1, challenge: Constants.challenge3)
 }

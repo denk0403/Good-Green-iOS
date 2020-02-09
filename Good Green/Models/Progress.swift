@@ -11,6 +11,14 @@ import Foundation
 struct Progress {
 
     let value: Int
+	
+	let threshold: Int
     
     let challenge: Challenge
+}
+
+struct ProgressDTO: Codable {
+	let value: Int
+	let threshold: Int
+	let challenge: String
 }

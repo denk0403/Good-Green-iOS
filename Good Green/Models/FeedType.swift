@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum FeedType {
-    case created, started, updated
+enum FeedType: String, Codable {
+    case created = "created", started = "started", updated = "updated"
 }

@@ -58,5 +58,31 @@ public struct Challenge {
             }
         }
     }
+}
+
+struct ChallengeDTO: Codable {
+	let id: String
     
+    let name: String
+    
+    let iconImage: String
+    
+    let vibe: Vibe
+    
+    let description: String
+    
+    let threshold: Int
+    
+    var challengeUsers: [String]
+	
+	enum CodingKeys: String, CodingKey {
+		case id
+		case name
+		case iconImage = "icon"
+		case vibe
+		case description
+		case threshold
+		case challengeUsers = "users"
+		
+	}
 }

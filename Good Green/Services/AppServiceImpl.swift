@@ -36,6 +36,12 @@ class AppServiceImpl: AppService {
     func getUserChallenges(callback: @escaping ([Progress]?) -> Void) {
         callback([Constants.progress1, Constants.progress2, Constants.progress3])
     }
+	func getUserActiveChallenges(callback: @escaping ([Progress]?) -> Void ) {
+		self.getUserChallenges(callback: callback)
+	}
+	func getUserPreviousChallenges(callback: @escaping ([Progress]?) -> Void) {
+		self.getUserChallenges(callback: callback)
+	}
     
     func getUser(userID: String, callback: @escaping (User?) -> Void) {
         callback(Constants.user1)

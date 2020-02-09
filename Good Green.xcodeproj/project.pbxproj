@@ -35,6 +35,7 @@
 		46E297B523EFB6D8006849C8 /* SelectSearchTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */; };
 		A045B32923EFAA1200411A27 /* OtherUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045B32823EFAA1200411A27 /* OtherUsersView.swift */; };
 		A045B32B23EFAC6500411A27 /* OtherUsersFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045B32A23EFAC6500411A27 /* OtherUsersFullView.swift */; };
+		A045B32D23EFB92100411A27 /* AppServiceRealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045B32C23EFB92100411A27 /* AppServiceRealData.swift */; };
 		D3D5BB5223EF4A8E0017715B /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB5123EF4A8E0017715B /* FeedView.swift */; };
 		D3D5BB5423EF50D10017715B /* UserCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB5323EF50D10017715B /* UserCardView.swift */; };
 		D3D5BB5623EF67800017715B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5BB5523EF67800017715B /* HomeView.swift */; };
@@ -107,6 +108,7 @@
 		46E297B423EFB6D8006849C8 /* SelectSearchTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSearchTypeView.swift; sourceTree = "<group>"; };
 		A045B32823EFAA1200411A27 /* OtherUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersView.swift; sourceTree = "<group>"; };
 		A045B32A23EFAC6500411A27 /* OtherUsersFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersFullView.swift; sourceTree = "<group>"; };
+		A045B32C23EFB92100411A27 /* AppServiceRealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceRealData.swift; sourceTree = "<group>"; };
 		D3D5BB5123EF4A8E0017715B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D3D5BB5323EF50D10017715B /* UserCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardView.swift; sourceTree = "<group>"; };
 		D3D5BB5523EF67800017715B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			children = (
 				46E2978723EE9263006849C8 /* AppService.swift */,
 				46E2978B23EF2336006849C8 /* AppServiceImpl.swift */,
+				A045B32C23EFB92100411A27 /* AppServiceRealData.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				46E2978C23EF2336006849C8 /* AppServiceImpl.swift in Sources */,
 				D3D5BB6923EF9C810017715B /* FeedObjectBodyView.swift in Sources */,
 				46E2979C23EF4F36006849C8 /* ProgressMocks.swift in Sources */,
+				A045B32D23EFB92100411A27 /* AppServiceRealData.swift in Sources */,
 				D3D5BB6223EF81200017715B /* CompletedChallengesButtonView.swift in Sources */,
 				46E2979623EF378C006849C8 /* Constants.swift in Sources */,
 				46E297A923EF7E7A006849C8 /* ChallengeControlView.swift in Sources */,
