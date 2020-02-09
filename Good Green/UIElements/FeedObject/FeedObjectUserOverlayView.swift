@@ -21,18 +21,14 @@ struct FeedObjectUserOverlayView: View {
                                     .stroke(Color(Constants.gunmetal), lineWidth: 1)
                                 .frame(width: 201, height: 17)
                             HStack {
-                                Button(action: {
-                                    self.visitUserPage()
-                                }) {
-                                    Text(feedObject.user.name)
+                                Text(feedObject.user.name)
                                         .font(.custom("Helvetica Neue", size: 10))
                                         .frame(maxWidth: 85)
                                         .foregroundColor(Color(Constants.coral))
-                                }
+							}.padding()
                                 Text("completed a challenge")
                                 .font(.custom("Helvetica Neue", size: 10))
                                     .foregroundColor(Color(Constants.gunmetal))
-                            }
                         }
                     )
     }

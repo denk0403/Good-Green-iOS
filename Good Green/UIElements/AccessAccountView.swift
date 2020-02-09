@@ -24,11 +24,14 @@ struct AccessAccountView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
+	@State private var selection: Int? = nil
     
     var body: some View {
         let validState = (self.selected == .login && (!self.username.isEmpty && !self.password.isEmpty))
             || ( self.selected == .signup && (!self.username.isEmpty && !self.password.isEmpty) && (self.password == self.confirmPassword))
-        return ZStack{
+		return NavigationView {
+			ZStack{
+				NavigationLink("", destination: ContentView(), tag: 0, selection: self.$selection)
             Color(Constants.whiteSmoke).edgesIgnoringSafeArea(.all)
                 VStack {
                     VStack {
@@ -99,10 +102,14 @@ struct AccessAccountView: View {
                             Button(action: {
                                 self.selected == .login
                                     ? self.appService.authUser(username: self.username, password: self.password, callback: {
-                                    _ = $0
+										if $0 != nil {
+											self.selection = 0
+										}
                                     })
                                     : self.appService.createUser(username: self.password, password: self.password, callback: {
-                                        _ = $0
+                                        if $0 != nil {
+											self.selection = 0
+										}
                                     })
                             }) {
                                 RoundedRectangle(cornerRadius: buttonCornerRadius)
@@ -120,6 +127,7 @@ struct AccessAccountView: View {
                     }
                         
         }
+		}
 
         
     }

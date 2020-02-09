@@ -15,6 +15,7 @@ struct OtherUsersFullView: View {
 	
 	@State private var feed: [FeedObject] = []
 	@State private var isError = false
+	@State private var isLoading = true
 	
 	@State private var startingUser = Constants.user1
     var body: some View {
@@ -23,7 +24,7 @@ struct OtherUsersFullView: View {
 				Text("Click here to retry")
 			})
 		} else {
-			return AnyView(LoadingView(isLoading: feed.isEmpty) {
+			return AnyView(LoadingView(isLoading: self.isLoading) {
 				OtherUsersView(user: self.startingUser, feedObjects: self.feed)
 			}.onAppear {
 				self.appService.getUser(userID: self.user.id) {user in
@@ -32,6 +33,7 @@ struct OtherUsersFullView: View {
 							self.isError = true
 							return
 						}
+						self.isLoading = false
 						self.feed = myFeed
 						self.startingUser = myUser
 					}

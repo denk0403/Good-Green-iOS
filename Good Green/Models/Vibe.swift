@@ -9,7 +9,7 @@
 import Foundation
 
 enum Vibe: String, Codable {
-    case water = "Water", trash = "Trash", trees = "Trees", animals = "Animals", transportation = "Transportation", clothing = "clothing"
+    case water = "water", trash = "trash", trees = "trees", animals = "animals", transportation = "Transportation", clothing = "clothing"
 	
     static let allVibes: [String] = [water.rawValue, trash.rawValue, trees.rawValue, animals.rawValue, transportation.rawValue]
     

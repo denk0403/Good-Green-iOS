@@ -25,13 +25,13 @@ struct ChallengePageView: View {
             self.subscription == .active
                 ? AnyView(ChallengeControlView(challenge: challenge, subscription: self.$subscription))
                 : AnyView(Button(action: {
-                    self.appService.dropChallenge(challengeID: self.challenge.id, callback: {
+                    self.appService.acceptChallenge(challengeID: self.challenge.id, callback: {
                         if $0 {
                             self.subscription = .inactive
                         }
                     })
                 }) {
-                    RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(Text("Join challenge").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
+                    RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(Text("Accept challenge").foregroundColor(Color(Constants.gunmetal)).font(.custom("Helvetics Neue", size: buttonTextSize)))
                     .foregroundColor(Color(Constants.ufoGreen))
                 })
             ChallengeDescriptionView(challenge: challenge).padding()

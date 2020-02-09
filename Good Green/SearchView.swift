@@ -18,7 +18,7 @@ struct SearchView: View {
     @State private var isError = false
     @Environment(\.appService) var appService: AppService
     
-    let timer = Timer.publish(every: 0.25, on: .current, in: .common).autoconnect()
+    let timer = Timer.publish(every: 2, on: .current, in: .common).autoconnect()
     
     var body: some View {
         ZStack {
@@ -41,7 +41,30 @@ struct SearchView: View {
                     AnyView(LoadingView(isLoading: self.loading) {
                         self.searchingType == .users ? AnyView(UserListSearchView(users: self.users))
                             : AnyView(ChallengeListSearchView(challenges: self.challenges))
-                    }.onReceive(timer) {_ in
+                    }.onAppear {
+					self.searchingType == .users
+						? self.appService.getUsers(query: self.searchQuery, callback: {
+							
+							if let users = $0 {
+								self.users = users
+							} else {
+								self.isError = true
+							}
+							self.loading = false
+
+							
+						})
+						: self.appService.searchChallenges(query: self.searchQuery, callback: {
+							
+							if let challenges = $0 {
+								self.challenges = challenges
+							 } else {
+								self.isError = true
+							}
+							self.loading = false
+							
+						})
+					}.onReceive(timer) {_ in
                         self.searchingType == .users
                         ? self.appService.getUsers(query: self.searchQuery, callback: {
                             

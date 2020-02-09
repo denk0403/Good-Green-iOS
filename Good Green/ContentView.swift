@@ -19,10 +19,10 @@ struct ContentView: View {
                 .foregroundColor: Constants.gunmetal,
              .font : UIFont(name:"Helvetica Neue", size: 40)!]
     }
+	
+	@Environment(\.appService) var appService: AppService
  
     var body: some View {
-        NavigationView {
-            
         TabView(selection: $selection) {
             FeedView()
                 .font(.title)
@@ -43,7 +43,7 @@ struct ContentView: View {
                 }
                 .tag(1)
         
-            HomeView(user: Constants.user1)
+			HomeView(user: self.appService.currentUser ?? Constants.user1)
                 .tabItem{
                     VStack {
                         Image(systemName: "house")
@@ -52,8 +52,7 @@ struct ContentView: View {
             }.tag(2)
         }
 		.navigationBarTitle(Text(""), displayMode: .inline)
-		}
-		.environment(\.appService, AppServiceRealData())
+//		.environment(\.appService, AppServiceRealData())
 //		.environment(\.appService, AppServiceImpl())
     }
 }

@@ -36,7 +36,7 @@ class AppServiceRealData: AppService {
 				completion(nil)
 				return
 			}
-			
+			print(String(data: myData, encoding: .utf8))
 			completion(try? JSONDecoder().decode(T.self, from: myData))
 		}.resume()
 	}
@@ -57,7 +57,6 @@ class AppServiceRealData: AppService {
 				completion(nil)
 				return
 			}
-			
 			completion(try? JSONDecoder().decode(T.self, from: myData))
 		}.resume()
 	}
@@ -127,6 +126,7 @@ class AppServiceRealData: AppService {
 			
 			var progresses = [Progress]()
 			for each in actualProgress{
+				group.enter()
 				self.getChallenge(challengeID: each.challenge) {
 					guard let challenge = $0 else {
 						group.leave()
@@ -209,13 +209,13 @@ class AppServiceRealData: AppService {
 	}
 	
 	func authUser(username: String, password: String, callback: @escaping (User?) -> Void) {
-		self.makePostApiRequest(url: "/auth/token") { (auth: Authentication?) in
+		self.makePostApiRequest(url: "/auth/token", extraArguments: ["username": username, "password": password]) { (auth: Authentication?) in
 			guard let authentication = auth else {
 				callback(nil)
 				return
 			}
-			self.authToken = authentication.key
-            self.parse(user: authentication.value, getFollowers: true) {
+			self.authToken = authentication.value
+            self.parse(user: authentication.key, getFollowers: true) {
                 self.currentUser = $0
                 callback($0)
             }
@@ -378,13 +378,13 @@ class AppServiceRealData: AppService {
 	}
 	
 	func createUser(username: String, password: String, callback: @escaping (User?) -> ()) {
-		self.makePostApiRequest(url: "/user/create", extraArguments: ["username": username, "password": password]) { (auth: Authentication?) in
+		self.makePostApiRequest(url: "/user/create", extraArguments: ["username": username, "password": password, "picture": "person", "name": "Jack", "bio": "Just a fun Northeastern student"]) { (auth: Authentication?) in
 			guard let authentication = auth else {
 				callback(nil)
 				return
 			}
-			self.authToken = authentication.key
-            self.parse(user: authentication.value, getFollowers: true) {
+			self.authToken = authentication.value
+            self.parse(user: authentication.key, getFollowers: true) {
                 self.currentUser = $0
                 callback($0)
             }
@@ -421,6 +421,6 @@ class AppServiceRealData: AppService {
 }
 
 struct Authentication: Codable {
-	let key: String
-	let value: UserDTO
+	let key: UserDTO
+	let value: String
 }

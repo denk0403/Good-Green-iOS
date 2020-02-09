@@ -25,4 +25,10 @@ struct ProgressDTO: Codable {
 	let value: Int
 	let threshold: Int
 	let challenge: String
+	
+	enum CodingKeys: String, CodingKey {
+		case value = "progress"
+		case threshold
+		case challenge
+	}
 }
