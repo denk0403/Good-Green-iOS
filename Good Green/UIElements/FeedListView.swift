@@ -13,13 +13,17 @@ struct FeedListView: View {
     var body: some View {
 		List{
 			ForEach(feedObjects, id: \.id) { feedObject in
-				HStack {
+				VStack {
 					Spacer()
-					FeedObjectView(feedObject: feedObject)
+					HStack {
+						Spacer()
+						FeedObjectView(feedObject: feedObject)
+						Spacer()
+					}
 					Spacer()
 				}
 			}
-		}.colorMultiply(Color(Constants.whiteSmoke))
+			}.colorMultiply(Color(Constants.whiteSmoke))
         
     }
 }

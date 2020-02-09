@@ -51,7 +51,7 @@ struct ContentView: View {
                     }
             }.tag(2)
         }
-        .navigationBarTitle("GoodGreen")
+		.navigationBarTitle(Text(""), displayMode: .inline)
 		}.environment(\.appService, AppServiceImpl())
     }
 }

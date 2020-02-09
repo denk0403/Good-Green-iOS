@@ -15,6 +15,8 @@ struct OtherUsersFullView: View {
 	
 	@State private var feed: [FeedObject] = []
 	@State private var isError = false
+	
+	@State private var startingUser = Constants.user1
     var body: some View {
 		if isError {
 			return AnyView(Button(action: {self.isError = false}) {
@@ -22,15 +24,19 @@ struct OtherUsersFullView: View {
 			})
 		} else {
 			return AnyView(LoadingView(isLoading: feed.isEmpty) {
-				OtherUsersView(user: self.user, feedObjects: self.feed)
+				OtherUsersView(user: self.startingUser, feedObjects: self.feed)
 			}.onAppear {
-				self.appService.getFeed(offset: 0) {feed in
-					guard let myFeed = feed else {
-						self.isError = true
-						return
+				self.appService.getUser(userID: self.user.id) {user in
+					self.appService.getFeed(offset: 0) {feed in
+						guard let myFeed = feed, let myUser = user else {
+							self.isError = true
+							return
+						}
+						self.feed = myFeed
+						self.startingUser = myUser
 					}
-					self.feed = myFeed
 				}
+				
 			})
 		}
     }

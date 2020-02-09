@@ -23,7 +23,7 @@ struct FeedView: View {
 	
 	var errorView: some View {
 		Button(action: { withAnimation { self.isLoading = true }}) {
-			Text("There was an error retrieving your data.")
+			Text("There was an error retrieving your data.").multilineTextAlignment(.center)
 		}
 	}
 	
@@ -32,7 +32,7 @@ struct FeedView: View {
 			ZStack {
 				Color(Constants.whiteSmoke).edgesIgnoringSafeArea(.all)
 				VStack {
-					Image("logo").resizable().scaledToFit().padding()
+					Image("logo").resizable().scaledToFit().padding(.bottom)
 					self.feedObjects.isEmpty ? AnyView(self.emptyView) : AnyView(self.nonEmptyView)
 				}
 			}
