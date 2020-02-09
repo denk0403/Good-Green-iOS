@@ -40,7 +40,7 @@ public struct User {
     }
     
     mutating func subscribeTo(challenge: Challenge) {
-        let newProgress = Progress(value: 0, challenge: challenge);
+        let newProgress = Progress(value: 0, threshold: 1, challenge: challenge);
         activeChallenges.append(newProgress)
     }
     
@@ -77,4 +77,32 @@ public struct User {
         }
     }
     
+}
+
+struct UserDTO: Codable {
+	// the image the user chooses to represent them
+    let userImage: String
+    // the user's name
+    
+    let id: String
+    
+    let name: String
+    
+    let bio: String
+    
+    var activeChallenges: [ProgressDTO]
+    
+    var previousChallenges: [ProgressDTO]
+    
+    var following: [String]
+	
+	enum CodingKeys: String, CodingKey {
+		case userImage = "icon"
+		case id = "username"
+		case name
+		case bio
+		case activeChallenges
+		case previousChallenges
+		case following
+	}
 }

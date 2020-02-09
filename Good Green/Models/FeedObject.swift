@@ -24,3 +24,26 @@ public struct FeedObject {
     let date: Date
 
 }
+
+struct FeedObjectDTO: Codable {
+	let id: String
+    
+    let creator: String
+    
+    let challengeId: String
+    
+    let likes: [String]
+    
+    let feedType: FeedType?
+    
+    let date: Date
+	
+	enum CodingKeys: String, CodingKey {
+		case id
+		case creator = "user"
+		case challengeId = "challenge"
+		case likes
+		case feedType
+		case date
+	}
+}
