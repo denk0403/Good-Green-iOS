@@ -16,12 +16,12 @@ struct FeedObjectChallengeHeadingView: View {
         HStack {
             Image(systemName: "house.fill")
                 .resizable()
-                .frame(width: 60, height: 60)
+                .frame(width: 30, height: 30)
                 .clipShape(Circle())
                 .overlay(
                     Circle().stroke(Color(Constants.gunmetal), lineWidth: 1))
             Text(feedObject.challenge.name)
-                .font(.custom("Helvetica Neue", size: 20))
+                .font(.custom("Helvetica Neue", size: 18))
                 .foregroundColor(Color(Constants.gunmetal))
             .padding()
         }

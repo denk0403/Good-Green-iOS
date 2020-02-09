@@ -20,24 +20,25 @@ struct FeedObjectView: View {
     
    
     var body: some View {
-        VStack {
-                    // main body showing challenge, icon, and description
-                    ZStack {
-                       FeedObjectBackgroundRectView()
-                        
-                        Button(action: {
-                            self.visitChallengePage()
-                        }) {
-                            FeedObjectChallengeHeadingView(feedObject: feedObject)
-                        }
-                            // challenge description
-                            Text(feedObject.challenge.description)
-                                    .font(.custom("Helvetica Neue", size: 9))
-                                .foregroundColor(Color(Constants.gunmetal))
-                                 .padding(EdgeInsets(top:10, leading: 50, bottom: 0, trailing: 50))
-                                .frame(idealHeight: 80, maxHeight: 100)
-                        
-                        
+        VStack() {
+            // main body showing challenge, icon, and description
+            ZStack {
+               FeedObjectBackgroundRectView()
+                
+                Button(action: {
+                    self.visitChallengePage()
+                }) {
+                    VStack(alignment: .leading) {
+                        FeedObjectChallengeHeadingView(feedObject: feedObject)
+
+                        // challenge description
+                        FeedObjectBodyView(feedObject: feedObject)
+                    }
+                    
+                }
+                   
+                
+                
                         // like button
                         VStack {
                             Button(action: {
@@ -103,7 +104,7 @@ struct FeedObjectView: View {
                             }
                             
                         )
-                    }
+        }.frame(width: 320, height: 125)
     }
     
     func visitUserPage() -> Void {
