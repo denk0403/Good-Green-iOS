@@ -10,11 +10,11 @@ import SwiftUI
 
 struct ChallengeHeaderView: View {
     let challenge: Challenge;
-    let iconSize: CGFloat = 90
+    let iconSize: CGFloat = 100
     
     var body: some View {
         HStack {
-            challenge.iconImage.resizable().frame(width: iconSize, height: iconSize).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25))
+            challenge.iconImage.resizable().frame(width: iconSize, height: iconSize*10/9).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15))
             ChallengeInfoView()
         }
     }

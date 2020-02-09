@@ -26,4 +26,5 @@ protocol AppService {
     func unlikePost(feedID: String, callback: @escaping (Bool) -> Void)
     func followUser(userID: String, callback: @escaping (Bool) -> Void)
     func unfollowUser(userID: String, callback: @escaping (Bool) -> Void)
+    func searchChallenges(query: String, callback: @escaping ([Challenge]?) -> Void)
 }

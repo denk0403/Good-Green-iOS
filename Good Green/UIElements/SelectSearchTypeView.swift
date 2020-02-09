@@ -22,16 +22,19 @@ struct SelectSearchTypeView: View {
     let buttonFontFamily = "Helvetics Neue"
     
     @Binding var type: SearchType
+    @Binding var loading: Bool
     
     var body: some View {
         HStack {
             Button(action: {
+                self.loading = true
                 self.type = .users
             }) {
                 RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(Text("Users").foregroundColor(Color(Constants.gunmetal)).font(.custom(buttonFontFamily, size: buttonTextSize)))
                     .foregroundColor(type == .users ? Color(Constants.ufoGreen) : Color(Constants.whiteSmoke)).overlay(RoundedRectangle(cornerRadius: buttonCornerRadius).stroke(buttonStrokeColor))
             }
             Button(action: {
+                self.loading = true
                 self.type = .challenges
             }) {
                 RoundedRectangle(cornerRadius: buttonCornerRadius).frame(width: buttonWidth, height: buttonHeight).overlay(Text("Challenges").foregroundColor(Color(Constants.gunmetal)).font(.custom(buttonFontFamily, size: buttonTextSize)))

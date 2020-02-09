@@ -10,26 +10,87 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var searchingType: SearchType = .users
+    @State private var searchQuery: String = ""
+    @State private var loading: Bool = true
+    @State private var users: [User] = []
+    @State private var challenges: [Challenge] = []
+    @State private var isError = false
+    @Environment(\.appService) var appService: AppService
+    
     var body: some View {
         ZStack {
             Color(Constants.whiteSmoke).edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
-                SearchBarView()
+                SearchBarView(search: self.$searchQuery).padding()
                 Spacer()
                 Spacer()
-                SelectSearchTypeView(type: self.$searchingType)
+                SelectSearchTypeView(type: self.$searchingType, loading: self.$loading)
                 Spacer()
                 Spacer()
-                UserListSearchView(users: [Constants.user1, Constants.user2, Constants.user3, Constants.user4])
+                if isError {
+                    AnyView(Button(action: {
+                        self.isError = false
+                    }) {
+                        Text("Click here to retry")
+                    })
+                } else {
+                    AnyView(LoadingView(isLoading: self.loading) {
+                        self.searchingType == .users ? AnyView(UserListSearchView(users: self.users))
+                            : AnyView(ChallengeListSearchView(challenges: self.challenges))
+                    }.onAppear {
+                        self.searchingType == .users
+                            ? self.appService.getUsers(query: self.searchQuery, callback: {
+                                
+//                                if let users = $0 {
+//                                    self.users = users
+//                                } else {
+//                                    self.isError = true
+//                                }
+//                                self.loading = false
+                                
+                                let result = $0
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                    if let users = result {
+                                        self.users = users
+                                    } else {
+                                        self.isError = true
+                                    }
+                                    self.loading = false
+                                }
+                                
+                            })
+                            : self.appService.searchChallenges(query: self.searchQuery, callback: {
+                                
+//                                if let challenges = $0 {
+//                                    self.challenges = challenges
+//                                 } else {
+//                                    self.isError = true
+//                                }
+//                                self.loading = false
+                                
+                                let result = $0
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                    if let challenges = result {
+                                        self.challenges = challenges
+                                     } else {
+                                        self.isError = true
+                                    }
+                                    self.loading = false
+                                }
+                            })
+                        }
+                    )
+                }
             }
+        }
             
         }
-    }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView().environment(\.appService, AppServiceImpl())
     }
 }
+
